@@ -12,13 +12,11 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class ComponentFace extends MessageComponent
-{
+public class ComponentFace extends MessageComponent {
     public int faceId;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:face,id=" + faceId + "]";
     }
 }

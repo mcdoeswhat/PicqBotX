@@ -11,8 +11,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ExComponentImage extends ExComponentSendable
-{
+public class ExComponentImage extends ExComponentSendable {
     /**
      * 图片暂存于腾讯服务器上的地址
      */
@@ -29,11 +28,10 @@ public class ExComponentImage extends ExComponentSendable
     /**
      * 构造一个内部图片组件
      *
-     * @param url 图片在线地址
+     * @param url  图片在线地址
      * @param file 图片离线地址
      */
-    protected ExComponentImage(String url, String file)
-    {
+    protected ExComponentImage(String url, String file) {
         this.url = url;
         this.file = file;
     }
@@ -43,8 +41,7 @@ public class ExComponentImage extends ExComponentSendable
      *
      * @param fileOrUrl 图片地址
      */
-    public ExComponentImage(String fileOrUrl)
-    {
+    public ExComponentImage(String fileOrUrl) {
         this(fileOrUrl, false);
     }
 
@@ -52,17 +49,15 @@ public class ExComponentImage extends ExComponentSendable
      * 构造一个图片组件
      *
      * @param fileOrUrlOrB64 图片或B64编码图片地址
-     * @param isBase64 是否是B64编码图片
+     * @param isBase64       是否是B64编码图片
      */
-    public ExComponentImage(String fileOrUrlOrB64, boolean isBase64)
-    {
+    public ExComponentImage(String fileOrUrlOrB64, boolean isBase64) {
         this.file = isBase64 ? "base64://" + fileOrUrlOrB64 : fileOrUrlOrB64;
         this.url = null;
     }
 
     @Override
-    public String toCQCode()
-    {
+    public String toCQCode() {
         return "[CQ:image," + (noCache ? "cache=0," : "") + "file=" + file + "]";
     }
 }

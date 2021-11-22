@@ -10,11 +10,9 @@ import cc.moecraft.icq.sender.message.MessageComponent;
  *
  * @author Hykilpikonna
  */
-public class ComponentShake extends MessageComponent
-{
+public class ComponentShake extends MessageComponent {
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:shake]";
     }
 }

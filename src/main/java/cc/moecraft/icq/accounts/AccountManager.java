@@ -20,8 +20,7 @@ import java.util.Map.Entry;
  * @author Hykilpikonna
  */
 @Getter
-public class AccountManager
-{
+public class AccountManager {
     /**
      * 机器人账号 (酷Q地址) 列表
      */
@@ -40,8 +39,7 @@ public class AccountManager
     /**
      * 构造器: 初始化账号列表
      */
-    public AccountManager()
-    {
+    public AccountManager() {
         accounts = new ArrayList<>();
         refreshCache();
     }
@@ -51,8 +49,7 @@ public class AccountManager
      *
      * @param accounts 账号信息
      */
-    public void addAccount(BotAccount... accounts)
-    {
+    public void addAccount(BotAccount... accounts) {
         this.accounts.addAll(new ArrayList<>(Arrays.asList(accounts)));
         refreshCache();
     }
@@ -63,15 +60,12 @@ public class AccountManager
      * @param groupId 群号
      * @return 发送频率最小的账号
      */
-    public BotAccount getOptimal(long groupId)
-    {
+    public BotAccount getOptimal(long groupId) {
         BotAccount minAccount = null;
 
         long minMessages = Long.MAX_VALUE;
-        for (Entry<BotAccount, Long> entry : groupAccountIndex.get(groupId).entrySet())
-        {
-            if (entry.getValue() >= minMessages)
-            {
+        for (Entry<BotAccount, Long> entry : groupAccountIndex.get(groupId).entrySet()) {
+            if (entry.getValue() >= minMessages) {
                 continue;
             }
 
@@ -85,23 +79,19 @@ public class AccountManager
     /**
      * 刷新缓存
      */
-    public void refreshCache()
-    {
+    public void refreshCache() {
         // Initialize indexes
         groupAccountIndex = new HashMap<>();
         idIndex = new HashMap<>();
 
         // Loop through all of the accounts.
-        for (BotAccount account : accounts)
-        {
+        for (BotAccount account : accounts) {
             idIndex.put(account.getId(), account);
 
             // Loop through all of the groups for each account.
-            for (RGroup group : account.getHttpApi().getGroupList().getData())
-            {
+            for (RGroup group : account.getHttpApi().getGroupList().getData()) {
                 // Register the group to the index.
-                if (!groupAccountIndex.containsKey(group.getGroupId()))
-                {
+                if (!groupAccountIndex.containsKey(group.getGroupId())) {
                     groupAccountIndex.put(group.getGroupId(), new HashMap<>());
                 }
 
@@ -116,8 +106,7 @@ public class AccountManager
      *
      * @return 第一个API.
      */
-    public IcqHttpApi getNonAccountSpecifiedApi()
-    {
+    public IcqHttpApi getNonAccountSpecifiedApi() {
         return accounts.size() < 1 ? null : accounts.get(0).getHttpApi();
     }
 
@@ -126,8 +115,7 @@ public class AccountManager
      *
      * @param event 事件
      */
-    protected void recordMessage(EventLocalSendGroupMessage event)
-    {
+    protected void recordMessage(EventLocalSendGroupMessage event) {
         Map<BotAccount, Long> map = groupAccountIndex.get(event.getId());
         map.put(event.getBotAccount(), map.get(event.getBotAccount()) + 1);
     }

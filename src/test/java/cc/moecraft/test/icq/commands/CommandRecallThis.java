@@ -17,11 +17,9 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandRecallThis implements GroupCommand
-{
+public class CommandRecallThis implements GroupCommand {
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
         if (sender.isAdmin()) return "不好意思不好意思权限狗打扰了";
         if (!event.isAdmin()) return "但我不是管理员";
 
@@ -30,8 +28,7 @@ public class CommandRecallThis implements GroupCommand
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("recallthis", "撤回这条");
     }
 }

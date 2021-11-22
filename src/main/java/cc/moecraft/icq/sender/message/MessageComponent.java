@@ -8,7 +8,6 @@ package cc.moecraft.icq.sender.message;
  *
  * @author Hykilpikonna
  */
-public abstract class MessageComponent
-{
+public abstract class MessageComponent {
     public abstract String toString();
 }

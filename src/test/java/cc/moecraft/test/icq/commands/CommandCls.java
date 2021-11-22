@@ -15,15 +15,12 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandCls implements EverywhereCommand
-{
+public class CommandCls implements EverywhereCommand {
     public static String clsMessage = null;
 
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
-        if (clsMessage == null)
-        {
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
+        if (clsMessage == null) {
             clsMessage = "";
             for (int i = 0; i < 2000; i++) clsMessage += "\n";
             clsMessage += "已清屏!";
@@ -33,8 +30,7 @@ public class CommandCls implements EverywhereCommand
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("clear", "cls", "清屏");
     }
 }

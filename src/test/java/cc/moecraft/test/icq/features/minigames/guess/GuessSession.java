@@ -14,14 +14,13 @@ import lombok.RequiredArgsConstructor;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-05-11 14:38
  */
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 @RequiredArgsConstructor
-public class GuessSession
-{
+public class GuessSession {
     private final long id; // 用户QQ号
-    private long timestamp = System.currentTimeMillis(); // 时间戳 (ms)
-
     private final long guessTarget; // 猜数字的答案
+    private long timestamp = System.currentTimeMillis(); // 时间戳 (ms)
     private long guessCount; // 猜数字的尝试数
 
     /**
@@ -29,17 +28,15 @@ public class GuessSession
      *
      * @return 是否有效
      */
-    public boolean isValid()
-    {
+    public boolean isValid() {
         return System.currentTimeMillis() - timestamp < 5 * 60 * 1000;
     }
 
     /**
      * +1 次猜测
      */
-    public void updateCount()
-    {
+    public void updateCount() {
         timestamp = System.currentTimeMillis();
-        guessCount ++;
+        guessCount++;
     }
 }

@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RCsrfToken implements ReturnPojoBase
-{
+public class RCsrfToken implements ReturnPojoBase {
     @SerializedName("token")
     @Expose
     private Long token;

@@ -8,7 +8,6 @@ import lombok.ToString;
  * @author Hykilpikonna
  */
 @ToString(callSuper = true)
-public class EventNoticeGroupAdminRemove extends EventNoticeGroupAdminChange
-{
+public class EventNoticeGroupAdminRemove extends EventNoticeGroupAdminChange {
 
 }

@@ -19,18 +19,15 @@ import java.util.ArrayList;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-31 22:25
  */
-public class CommandHelp implements GroupCommand
-{
+public class CommandHelp implements GroupCommand {
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
         AFCommand.groups.remove(group.getId());
         return new ComponentImage("https://i.imgur.com/Ze8NAtD.jpg").toString();
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("help", "帮助", "?");
     }
 }

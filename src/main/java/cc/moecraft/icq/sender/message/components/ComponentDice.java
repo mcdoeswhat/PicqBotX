@@ -10,11 +10,9 @@ import cc.moecraft.icq.sender.message.MessageComponent;
  *
  * @author Hykilpikonna
  */
-public class ComponentDice extends MessageComponent
-{
+public class ComponentDice extends MessageComponent {
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:dice,type=1]";
     }
 }

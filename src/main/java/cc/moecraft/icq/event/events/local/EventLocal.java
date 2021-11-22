@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public abstract class EventLocal extends Event
-{
+public abstract class EventLocal extends Event {
     protected boolean cancelled = false;
 }

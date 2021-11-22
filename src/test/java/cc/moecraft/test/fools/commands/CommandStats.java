@@ -12,11 +12,9 @@ import cc.moecraft.icq.command.CommandProperties;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-31 22:27
  */
-public class CommandStats extends AFCommand
-{
+public class CommandStats extends AFCommand {
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("stats", "home", "stat");
     }
 }

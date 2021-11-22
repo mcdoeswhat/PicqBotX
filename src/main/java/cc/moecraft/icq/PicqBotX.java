@@ -46,8 +46,7 @@ import static cc.moecraft.logger.format.AnsiColor.GREEN;
  * @since 2019-03-23 12:46
  */
 @Getter
-public class PicqBotX
-{
+public class PicqBotX {
     /**
      * Picq配置 | Picq configuration
      */
@@ -108,8 +107,7 @@ public class PicqBotX
      *
      * @param config Picq配置
      */
-    public PicqBotX(PicqConfig config)
-    {
+    public PicqBotX(PicqConfig config) {
         this(config, true);
     }
 
@@ -117,13 +115,11 @@ public class PicqBotX
      * 构造器
      *
      * @param config Picq配置
-     * @param init 是否启动服务器
+     * @param init   是否启动服务器
      */
-    public PicqBotX(PicqConfig config, boolean init)
-    {
+    public PicqBotX(PicqConfig config, boolean init) {
         this.config = config;
-        if (init)
-        {
+        if (init) {
             init();
         }
     }
@@ -133,24 +129,21 @@ public class PicqBotX
      *
      * @param socketPort 接收端口
      */
-    public PicqBotX(int socketPort)
-    {
+    public PicqBotX(int socketPort) {
         this(new PicqConfig(socketPort));
     }
 
     /**
      * 初始化
      */
-    private void init()
-    {
+    private void init() {
         // 设置是否输出 Init 消息
         MiscUtils.disabled = !config.isLogInit();
 
         // 日志管理器
         loggerInstanceManager = new LoggerInstanceManager();
         loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(config.getColorSupportLevel()));
-        if (!config.getLogPath().isEmpty())
-        {
+        if (!config.getLogPath().isEmpty()) {
             loggerInstanceManager.addEnvironment(new FileEnv(config.getLogPath(), config.getLogFileName()));
         }
 
@@ -189,14 +182,13 @@ public class PicqBotX
     /**
      * 添加机器人账号
      *
-     * @param name 名字
+     * @param name     名字
      * @param postHost 发送主机 (Eg. 127.0.0.1)
      * @param postPort 发送端口 (Eg. 31091)
      * @return 是否成功添加
      */
-    public boolean addAccount(String name, String postHost, int postPort)
-    {
-        return addAccount(name, postHost, postPort, (ex)->
+    public boolean addAccount(String name, String postHost, int postPort) {
+        return addAccount(name, postHost, postPort, (ex) ->
         {
             logger.error("HTTP发送错误: " + ex.getLocalizedMessage());
             logger.error("- 检查一下是不是忘记开酷Q了, 或者写错地址了");
@@ -206,21 +198,17 @@ public class PicqBotX
     /**
      * 添加机器人账号
      *
-     * @param name 名字
-     * @param postHost 发送主机（Eg. 127.0.0.1）
-     * @param postPort 发送端口（Eg. 31091）
+     * @param name         名字
+     * @param postHost     发送主机（Eg. 127.0.0.1）
+     * @param postPort     发送端口（Eg. 31091）
      * @param errorHandler 错误处理（HttpException）
      * @return 是否成功添加
      */
-    public boolean addAccount(String name, String postHost, int postPort, Consumer<HttpException> errorHandler)
-    {
-        try
-        {
+    public boolean addAccount(String name, String postHost, int postPort, Consumer<HttpException> errorHandler) {
+        try {
             this.accountManager.addAccount(new BotAccount(name, this, postHost, postPort));
             return true;
-        }
-        catch (HttpException ex)
-        {
+        } catch (HttpException ex) {
             errorHandler.accept(ex);
             return false;
         }
@@ -229,10 +217,8 @@ public class PicqBotX
     /**
      * 启动机器人
      */
-    public void startBot()
-    {
-        if (!verifyHttpPluginVersion())
-        {
+    public void startBot() {
+        if (!verifyHttpPluginVersion()) {
             logger.error("验证失败, 请检查上面的错误信息再重试启动服务器.");
             throw new VerifyFailedException();
         }
@@ -246,8 +232,7 @@ public class PicqBotX
      *
      * @param prefixes 前缀
      */
-    public void enableCommandManager(String... prefixes)
-    {
+    public void enableCommandManager(String... prefixes) {
         logger.timing.init();
 
         commandManager = new CommandManager(this, prefixes);
@@ -262,57 +247,45 @@ public class PicqBotX
      *
      * @return 是否通过验证
      */
-    public boolean verifyHttpPluginVersion()
-    {
-        if (config.isNoVerify())
-        {
+    public boolean verifyHttpPluginVersion() {
+        if (config.isNoVerify()) {
             logger.warning("已跳过版本验证w");
             return true;
         }
 
-        for (BotAccount botAccount : accountManager.getAccounts())
-        {
+        for (BotAccount botAccount : accountManager.getAccounts()) {
             String prefix = "账号 " + botAccount.getName() + ": ";
 
-            try
-            {
+            try {
                 RVersionInfo versionInfo = botAccount.getHttpApi().getVersionInfo().getData();
 
-                if (!versionInfo.getPluginVersion().matches(HTTP_API_VERSION_DETECTION))
-                {
+                if (!versionInfo.getPluginVersion().matches(HTTP_API_VERSION_DETECTION)) {
                     logger.error(prefix + "HTTP插件版本不正确, 已停止启动");
                     logger.error("- 当前版本: " + versionInfo.getPluginVersion());
                     logger.error("- 兼容的版本: " + HTTP_API_VERSION_DETECTION);
                     return false;
                 }
 
-                if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
-                {
-                    if(config.isLogInit()){
+                if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro")) {
+                    if (config.isLogInit()) {
                         logger.warning(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
                     }
                 }
-            }
-            catch (HttpException e)
-            {
-                if (e.getMessage().toLowerCase().contains("connection"))
-                {
+            } catch (HttpException e) {
+                if (e.getMessage().toLowerCase().contains("connection")) {
                     logger.error("HTTP发送地址验证失败, 已停止启动");
                     logger.error("- 请检查酷Q是否已经启动");
                     logger.error("- 请检查酷Q的接收端口是否和Picq的发送端口一样");
                     logger.error("- 请检查你的发送IP是不是写错了");
                     logger.error("- 如果是向外, 请检查这个主机有没有网络连接");
-                }
-                else
-                {
+                } else {
                     logger.error("验证失败, HTTP发送错误: ");
                 }
                 logger.error(e);
                 return false;
             }
 
-            if(config.isLogInit())
-            {
+            if (config.isLogInit()) {
                 logger.log(AnsiColor.YELLOW + prefix + AnsiColor.GREEN + "  版本验证完成!");
             }
         }
@@ -324,19 +297,17 @@ public class PicqBotX
      *
      * @param value 是否替换
      */
-    public void setUniversalHyExpSupport(boolean value)
-    {
+    public void setUniversalHyExpSupport(boolean value) {
         setUniversalHyExpSupport(value, true);
     }
 
     /**
      * 设置是否替换HyExp表达式
      *
-     * @param value 是否替换
+     * @param value    是否替换
      * @param safeMode 是否安全模式 (推荐是)
      */
-    public void setUniversalHyExpSupport(boolean value, boolean safeMode)
-    {
+    public void setUniversalHyExpSupport(boolean value, boolean safeMode) {
         hyExpressionResolver = value ? new HyExpressionResolver(safeMode) : null;
     }
 
@@ -345,8 +316,7 @@ public class PicqBotX
      *
      * @return Debug 信息
      */
-    public String printDebugSupportInfo()
-    {
+    public String printDebugSupportInfo() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         MessageBuilder builder = new MessageBuilder()

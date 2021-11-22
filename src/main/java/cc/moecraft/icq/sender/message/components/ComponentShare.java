@@ -12,8 +12,7 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class ComponentShare extends MessageComponent
-{
+public class ComponentShare extends MessageComponent {
     public String url;
 
     public String title;
@@ -23,8 +22,7 @@ public class ComponentShare extends MessageComponent
     public String image;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return String.format("[CQ:share,url=%s,title=%s,content=%s,image=%s]", url, title, content, image);
     }
 }

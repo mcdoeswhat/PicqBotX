@@ -14,8 +14,7 @@ import java.util.regex.Pattern;
  * @author Taskeren
  */
 @ToString
-public class ExComponent
-{
+public class ExComponent {
     private static final String REGEX_CQ_CODE = "(\\[CQ:.*?,.*?])";
 
     private static final Pattern CQC = Pattern.compile(REGEX_CQ_CODE);
@@ -26,17 +25,14 @@ public class ExComponent
      * @param message 消息原文
      * @return 解析后的组件
      */
-    public static ExComponent parseComponent(String message)
-    {
+    public static ExComponent parseComponent(String message) {
         String s0 = message.substring(1, message.length() - 1); // 去掉头尾的"[]"
         String[] s1 = s0.split(","); // 处理成数据对，像这样：["CQ:at", "qq=123456"]
         HashMap<String, String> map = genDataMap(s1); // 处理成Map
         ParserMap data = new ParserMap(map);
         String type = data.get("CQ"); // 获取CQ码类型
-        try
-        {
-            switch (type)
-            {
+        try {
+            switch (type) {
 
                 case "face":
                     return new ExComponentFace(data.getInteger("id"));
@@ -81,9 +77,7 @@ public class ExComponent
                 default:
                     return new ExComponentString(message);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return new ExComponentString(message);
         }
     }
@@ -94,18 +88,15 @@ public class ExComponent
      * @param s 消息
      * @return 解析后组件列表
      */
-    public static ArrayList<ExComponent> parseComponents(String s)
-    {
+    public static ArrayList<ExComponent> parseComponents(String s) {
         ArrayList<ExComponent> components = new ArrayList<>();
         int count = 0;
 
         Matcher matcher = CQC.matcher(s);
         int end = 0;
-        while (matcher.find())
-        {
+        while (matcher.find()) {
             // string before cq code
-            if (matcher.start() > end)
-            {
+            if (matcher.start() > end) {
                 String strBefore = s.substring(end, matcher.start());
                 components.add(new ExComponentString(strBefore));
             }
@@ -116,14 +107,12 @@ public class ExComponent
             count++;
         }
         // string after last cq code
-        if (end < s.length())
-        {
+        if (end < s.length()) {
             String strAfter = s.substring(end);
             components.add(new ExComponentString(strAfter));
             count++;
         }
-        if (count == 0)
-        {
+        if (count == 0) {
             components.add(new ExComponentString(s));
         }
         return components;
@@ -135,27 +124,22 @@ public class ExComponent
      * @param args 消息列表
      * @return 解析后组件列表
      */
-    public static ArrayList<ExComponent> parseComponents(ArrayList<String> args)
-    {
+    public static ArrayList<ExComponent> parseComponents(ArrayList<String> args) {
         ArrayList<ExComponent> components = new ArrayList<>();
 
-        for (String arg : args)
-        {
+        for (String arg : args) {
             components.addAll(parseComponents(arg));
         }
 
         return components;
     }
 
-    private static HashMap<String, String> genDataMap(String[] array)
-    {
+    private static HashMap<String, String> genDataMap(String[] array) {
         HashMap<String, String> map = new HashMap<>();
 
-        for (String s : array)
-        {
+        for (String s : array) {
             String[] s0 = s.split("[:=]", 2);
-            if (s0.length < 2)
-            {
+            if (s0.length < 2) {
                 continue;
             }
             map.put(s0[0], s0[1]);
@@ -164,32 +148,26 @@ public class ExComponent
         return map;
     }
 
-    public static class ParserMap
-    {
+    public static class ParserMap {
         final Map<String, String> data;
 
-        public ParserMap(Map<String, String> data)
-        {
+        public ParserMap(Map<String, String> data) {
             this.data = data;
         }
 
-        public String get(String key)
-        {
+        public String get(String key) {
             return data.getOrDefault(key, "");
         }
 
-        public int getInteger(String key)
-        {
+        public int getInteger(String key) {
             return Integer.parseInt(data.getOrDefault(key, "-1"));
         }
 
-        public long getLong(String key)
-        {
+        public long getLong(String key) {
             return Long.parseLong(data.getOrDefault(key, "-1"));
         }
 
-        public boolean getBoolean(String key)
-        {
+        public boolean getBoolean(String key) {
             return Boolean.parseBoolean(data.get(key));
         }
     }

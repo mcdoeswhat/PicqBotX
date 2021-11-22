@@ -29,7 +29,10 @@ import lombok.Setter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -42,19 +45,7 @@ import static java.util.Arrays.asList;
  * @author Hykilpikonna
  */
 @Getter
-public class EventManager
-{
-    private final PicqBotX bot;
-
-    private final EventParser eventParser;
-
-    @Setter
-    private CommandListener commandListener;
-
-    private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
-
-    private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredMethods = new HashMap<>();
-
+public class EventManager {
     /**
      * 所有可以注册的事件的类
      * 版本 v3.0.0.611 后, 反射注册类改为手动注册类
@@ -108,9 +99,14 @@ public class EventManager
             EventMetaLifecycle.class,
             EventMetaHeartbeat.class
     );
+    private final PicqBotX bot;
+    private final EventParser eventParser;
+    @Setter
+    private CommandListener commandListener;
+    private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
+    private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredMethods = new HashMap<>();
 
-    public EventManager(PicqBotX bot)
-    {
+    public EventManager(PicqBotX bot) {
         this.bot = bot;
         this.eventParser = new EventParser(this);
     }
@@ -120,43 +116,34 @@ public class EventManager
      *
      * @param listener 监听器
      */
-    public void registerListener(IcqListener listener)
-    {
+    public void registerListener(IcqListener listener) {
         registeredListeners.add(listener);
 
-        for (Method method : listener.getClass().getMethods())
-        {
-            if (method.getParameterCount() != 1)
-            {
+        for (Method method : listener.getClass().getMethods()) {
+            if (method.getParameterCount() != 1) {
                 continue;
             }
 
             Class<?> event = method.getParameterTypes()[0];
 
-            if (!Event.class.isAssignableFrom(event))
-            {
+            if (!Event.class.isAssignableFrom(event)) {
                 continue;
             }
-            if (!method.isAnnotationPresent(EventHandler.class))
-            {
+            if (!method.isAnnotationPresent(EventHandler.class)) {
                 continue;
             }
 
             for (Class<? extends Event> eventClass : eventClasses) // 向下注册所有子类
             {
-                if (!event.isAssignableFrom(eventClass))
-                {
+                if (!event.isAssignableFrom(eventClass)) {
                     continue;
                 }
 
                 String mapKey = eventClass.getName();
 
-                if (registeredMethods.containsKey(mapKey))
-                {
+                if (registeredMethods.containsKey(mapKey)) {
                     registeredMethods.get(mapKey).add(new RegisteredListenerMethod(method, listener));
-                }
-                else
-                {
+                } else {
                     registeredMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
                 }
             }
@@ -168,10 +155,8 @@ public class EventManager
      *
      * @param listeners 很多个监听器
      */
-    public void registerListeners(IcqListener... listeners)
-    {
-        for (IcqListener listener : listeners)
-        {
+    public void registerListeners(IcqListener... listeners) {
+        for (IcqListener listener : listeners) {
             registerListener(listener);
         }
     }
@@ -181,19 +166,15 @@ public class EventManager
      *
      * @param event 事件对象
      */
-    public void call(Event event)
-    {
+    public void call(Event event) {
         event.setBot(bot);
 
-        if (event instanceof EventMessage)
-        {
+        if (event instanceof EventMessage) {
             ((EventMessage) event).message = CQUtils.decodeMessage(((EventMessage) event).getMessage());
 
             // 检查指令
-            if (commandListener != null)
-            {
-                if (!commandListener.check((EventMessage) event))
-                {
+            if (commandListener != null) {
+                if (!commandListener.check((EventMessage) event)) {
                     return;
                 }
             }
@@ -201,36 +182,25 @@ public class EventManager
 
         String mapKey = event.getClass().getName();
 
-        if (!registeredMethods.containsKey(mapKey))
-        {
+        if (!registeredMethods.containsKey(mapKey)) {
             return;
         }
 
-        for (RegisteredListenerMethod registeredListenerMethod : registeredMethods.get(mapKey))
-        {
-            try
-            {
+        for (RegisteredListenerMethod registeredListenerMethod : registeredMethods.get(mapKey)) {
+            try {
                 registeredListenerMethod.call(event);
-            }
-            catch (IllegalAccessException e)
-            {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace(); // 这些理论上绝对不会出现
-            }
-            catch (Throwable e)
-            {
+            } catch (Throwable e) {
                 callError(event, e);
             }
         }
     }
 
-    public void callError(Event event, Throwable throwable)
-    {
-        if (event instanceof EventLocalException && ((EventLocalException) event).getParentEvent() instanceof EventLocalException)
-        {
+    public void callError(Event event, Throwable throwable) {
+        if (event instanceof EventLocalException && ((EventLocalException) event).getParentEvent() instanceof EventLocalException) {
             throwable.printStackTrace(); // 如果这个事件是报错事件, 而且这个事件报的错也是报错事件的话, 怎么办呢....
-        }
-        else
-        {
+        } else {
             call(new EventLocalException(throwable instanceof InvocationTargetException ? throwable.getCause() : throwable, event));
         }
     }

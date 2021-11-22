@@ -14,8 +14,7 @@ import java.util.Arrays;
  * @author Hykilpikonna
  */
 @Data
-public class CommandProperties
-{
+public class CommandProperties {
     public String name;
 
     public ArrayList<String> alias;
@@ -23,11 +22,10 @@ public class CommandProperties
     /**
      * 指令属性构造器
      *
-     * @param name 指令名
+     * @param name  指令名
      * @param alias 其他指令名
      */
-    public CommandProperties(String name, ArrayList<String> alias)
-    {
+    public CommandProperties(String name, ArrayList<String> alias) {
         this.name = name;
         this.alias = alias;
     }
@@ -37,19 +35,17 @@ public class CommandProperties
      *
      * @param name 指令名
      */
-    public CommandProperties(String name)
-    {
+    public CommandProperties(String name) {
         this(name, new ArrayList<>());
     }
 
     /**
      * 指令属性构造器封装
      *
-     * @param name 指令名
+     * @param name  指令名
      * @param alias 其他指令名
      */
-    public CommandProperties(String name, String... alias)
-    {
+    public CommandProperties(String name, String... alias) {
         this(name, new ArrayList<>(Arrays.asList(alias)));
     }
 

@@ -15,8 +15,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class VersionIncorrectException extends Exception
-{
+public class VersionIncorrectException extends Exception {
     public String requiredVersion;
 
     public String currentVersion;

@@ -19,14 +19,12 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventMetaLifecycle extends EventMeta
-{
+public class EventMetaLifecycle extends EventMeta {
     @SerializedName("sub_type")
     @Expose
     private LifecycleType lifecycleType;
 
-    public enum LifecycleType
-    {
+    public enum LifecycleType {
         ENABLE, DISABLE, CONNECT
     }
 }

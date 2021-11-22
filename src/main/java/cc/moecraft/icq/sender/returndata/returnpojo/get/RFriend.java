@@ -20,8 +20,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RFriend implements ReturnPojoBase
-{
+public class RFriend implements ReturnPojoBase {
     @SerializedName("user_id")
     @Expose
     private Long userId;

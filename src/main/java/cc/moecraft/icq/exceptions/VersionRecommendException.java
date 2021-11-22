@@ -13,7 +13,6 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class VersionRecommendException extends Exception
-{
+public class VersionRecommendException extends Exception {
     // 推荐用Pro版本
 }

@@ -15,17 +15,14 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandTestErr implements EverywhereCommand
-{
+public class CommandTestErr implements EverywhereCommand {
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
-        return String.valueOf(1/0);
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
+        return String.valueOf(1 / 0);
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("test-divide-zero");
     }
 }

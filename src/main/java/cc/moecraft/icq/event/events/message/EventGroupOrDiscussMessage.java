@@ -10,15 +10,13 @@ import lombok.ToString;
  * @author Hykilpikonna
  */
 @ToString(callSuper = true)
-public abstract class EventGroupOrDiscussMessage extends EventMessage
-{
+public abstract class EventGroupOrDiscussMessage extends EventMessage {
     /**
      * 获取群用户对象
      *
      * @return 发送消息的群用户
      */
-    public GroupUser getGroupSender()
-    {
+    public GroupUser getGroupSender() {
         return getBot().getGroupUserManager().getUserFromID(senderId, getGroup());
     }
 

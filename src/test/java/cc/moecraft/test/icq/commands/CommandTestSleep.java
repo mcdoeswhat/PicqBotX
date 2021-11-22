@@ -18,19 +18,16 @@ import java.util.ArrayList;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-04-08 21:50
  */
-public class CommandTestSleep implements EverywhereCommand
-{
+public class CommandTestSleep implements EverywhereCommand {
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
         event.respond("Sleeping... (2 minutes)");
         ThreadUtils.safeSleep(2 * 60 * 1000);
         return "Finished";
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("test-sleep");
     }
 }

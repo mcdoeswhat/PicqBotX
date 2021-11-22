@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 @Data
 @AllArgsConstructor
-public class CommandArgs
-{
+public class CommandArgs {
     private String prefix;
 
     private String commandName;

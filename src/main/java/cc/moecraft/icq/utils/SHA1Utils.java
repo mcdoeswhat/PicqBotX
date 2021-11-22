@@ -15,19 +15,16 @@ import java.util.Formatter;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-24 16:38
  */
-public class SHA1Utils
-{
+public class SHA1Utils {
     /**
      * 生成 HAMC SHA1
      *
      * @param data 数据
-     * @param key 秘钥
+     * @param key  秘钥
      * @return HASH
      */
-    public static String generateHAMCSHA1(String data, String key)
-    {
-        try
-        {
+    public static String generateHAMCSHA1(String data, String key) {
+        try {
             // Get an hmac_sha1 key from the raw key bytes
             byte[] keyBytes = key.getBytes();
             SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA1");
@@ -41,9 +38,7 @@ public class SHA1Utils
 
             //  Covert array of Hex bytes to a String
             return toHexString(rawHmac);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -54,12 +49,10 @@ public class SHA1Utils
      * @param bytes Bytes
      * @return Hex字符串
      */
-    private static String toHexString(byte[] bytes)
-    {
+    private static String toHexString(byte[] bytes) {
         Formatter formatter = new Formatter();
 
-        for (byte b : bytes)
-        {
+        for (byte b : bytes) {
             formatter.format("%02x", b);
         }
 

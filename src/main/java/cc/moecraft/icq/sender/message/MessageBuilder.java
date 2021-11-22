@@ -13,8 +13,7 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class MessageBuilder
-{
+public class MessageBuilder {
     @Getter
     private ArrayList<Object> components = new ArrayList<>();
 
@@ -24,8 +23,7 @@ public class MessageBuilder
      * @param object Component
      * @return 这个实例
      */
-    public MessageBuilder add(Object object)
-    {
+    public MessageBuilder add(Object object) {
         components.add(object);
         return this;
     }
@@ -40,14 +38,12 @@ public class MessageBuilder
      *
      * @return 这个实例
      */
-    public MessageBuilder newLine()
-    {
+    public MessageBuilder newLine() {
         return this.add("\n");
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
         components.forEach(stringBuilder::append);

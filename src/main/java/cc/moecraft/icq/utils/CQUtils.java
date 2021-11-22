@@ -8,10 +8,8 @@ package cc.moecraft.icq.utils;
  *
  * @author Hykilpikonna
  */
-public class CQUtils
-{
-    public static String decodeMessage(String rawMessage)
-    {
+public class CQUtils {
+    public static String decodeMessage(String rawMessage) {
         return rawMessage
                 .replace("&amp;", "&")
                 .replace("&#91;", "[")
@@ -19,8 +17,7 @@ public class CQUtils
                 .replace("&#44;", ",");
     }
 
-    public static String removeCqCode(String original)
-    {
+    public static String removeCqCode(String original) {
         return original.replaceAll("\\[CQ:.*?]", "");
     }
 }

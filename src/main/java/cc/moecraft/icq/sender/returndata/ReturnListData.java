@@ -14,8 +14,7 @@ import java.util.List;
  * @author Hykilpikonna
  */
 @Data
-public class ReturnListData<T extends ReturnPojoBase>
-{
+public class ReturnListData<T extends ReturnPojoBase> {
     public List<T> data;
 
     public Long returnCode;

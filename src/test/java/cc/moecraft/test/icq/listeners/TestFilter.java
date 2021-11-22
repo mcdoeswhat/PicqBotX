@@ -12,8 +12,7 @@ import cc.moecraft.icq.event.events.local.EventLocalSendMessage;
  *
  * @author Hykilpikonna
  */
-public class TestFilter extends IcqListener
-{
+public class TestFilter extends IcqListener {
     @EventHandler
     public void onAllLocalMessageEvent(EventLocalSendMessage event) // 监听所有发送消息的事件
     {

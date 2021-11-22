@@ -14,8 +14,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public abstract class EventRequest extends Event
-{
+public abstract class EventRequest extends Event {
     @SerializedName("request_type")
     @Expose
     protected String requestType;

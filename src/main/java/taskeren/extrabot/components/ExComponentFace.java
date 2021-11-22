@@ -10,8 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ExComponentFace extends ExComponentSendable
-{
+public class ExComponentFace extends ExComponentSendable {
     /**
      * 表情ID
      */
@@ -22,14 +21,12 @@ public class ExComponentFace extends ExComponentSendable
      *
      * @param id 表情ID
      */
-    public ExComponentFace(int id)
-    {
+    public ExComponentFace(int id) {
         this.id = id;
     }
 
     @Override
-    public String toCQCode()
-    {
+    public String toCQCode() {
         return "[CQ:face,id=" + id + "]";
     }
 }

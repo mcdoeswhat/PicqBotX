@@ -19,23 +19,19 @@ import java.util.ArrayList;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-24 14:38
  */
-public class CommandCmdList implements EverywhereCommand
-{
+public class CommandCmdList implements EverywhereCommand {
 
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
         MessageBuilder builder = new MessageBuilder().add("这个机器人只有这些指令嗯w:").newLine();
-        for (String cmdName : event.getBot().getCommandManager().getCommandNameList())
-        {
+        for (String cmdName : event.getBot().getCommandManager().getCommandNameList()) {
             builder.add(cmdName).add(", ");
         }
         return builder.toString();
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("cmdlist", "help");
     }
 }

@@ -10,7 +10,6 @@ import cc.moecraft.icq.command.CommandProperties;
  *
  * @author Hykilpikonna
  */
-public interface IcqCommand
-{
+public interface IcqCommand {
     CommandProperties properties();
 }

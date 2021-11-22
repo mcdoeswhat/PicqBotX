@@ -16,12 +16,12 @@ import lombok.ToString;
 @Getter
 public class ExComponentShare extends ExComponent {
 
-	final String content;
+    final String content;
 
-	final String img;
+    final String img;
 
-	final String title;
+    final String title;
 
-	final String url;
+    final String url;
 
 }

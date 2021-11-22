@@ -19,20 +19,16 @@ import static cc.moecraft.icq.utils.CQUtils.removeCqCode;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public abstract class EventMessage extends Event
-{
-    @SerializedName("message_type")
-    @Expose
-    protected String messageType;
-
-    @SerializedName("font")
-    @Expose
-    protected Long font;
-
+public abstract class EventMessage extends Event {
     @SerializedName("message")
     @Expose
     public String message;
-
+    @SerializedName("message_type")
+    @Expose
+    protected String messageType;
+    @SerializedName("font")
+    @Expose
+    protected Long font;
     @SerializedName("message_id")
     @Expose
     protected Long messageId;
@@ -51,8 +47,7 @@ public abstract class EventMessage extends Event
      * @param message 消息
      * @return 消息发送结果
      */
-    public ReturnData<RMessageReturnData> respond(String message)
-    {
+    public ReturnData<RMessageReturnData> respond(String message) {
         return respond(message, false);
     }
 
@@ -60,7 +55,7 @@ public abstract class EventMessage extends Event
      * 回复消息
      *
      * @param message 消息
-     * @param raw 是否无加工发送
+     * @param raw     是否无加工发送
      * @return 消息发送结果
      */
     public abstract ReturnData<RMessageReturnData> respond(String message, boolean raw);
@@ -71,8 +66,7 @@ public abstract class EventMessage extends Event
      * @param message 消息
      * @return 消息发送结果
      */
-    public ReturnData<RMessageReturnData> respondPrivateMessage(String message)
-    {
+    public ReturnData<RMessageReturnData> respondPrivateMessage(String message) {
         return respondPrivateMessage(message, false);
     }
 
@@ -80,11 +74,10 @@ public abstract class EventMessage extends Event
      * 回复到私聊
      *
      * @param message 消息
-     * @param raw 是否无加工发送
+     * @param raw     是否无加工发送
      * @return 消息发送结果
      */
-    public ReturnData<RMessageReturnData> respondPrivateMessage(String message, boolean raw)
-    {
+    public ReturnData<RMessageReturnData> respondPrivateMessage(String message, boolean raw) {
         return getHttpApi().sendPrivateMsg(getSenderId(), message, raw);
     }
 
@@ -96,8 +89,7 @@ public abstract class EventMessage extends Event
     public abstract User getSender();
 
     @Override
-    public boolean contentEquals(Object o)
-    {
+    public boolean contentEquals(Object o) {
         if (!(o instanceof EventMessage)) return false;
         EventMessage other = (EventMessage) o;
 

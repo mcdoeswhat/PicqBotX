@@ -14,13 +14,10 @@ import cc.moecraft.icq.sender.message.MessageBuilder;
  *
  * @author Hykilpikonna
  */
-public class ExceptionListener extends IcqListener
-{
+public class ExceptionListener extends IcqListener {
     @EventHandler
-    public void onException(EventLocalException event)
-    {
-        if (event.getParentEvent() instanceof EventMessage)
-        {
+    public void onException(EventLocalException event) {
+        if (event.getParentEvent() instanceof EventMessage) {
             ((EventMessage) event.getParentEvent()).respond(new MessageBuilder()
                     .add("指令执行失败: ").add(event.getException()).newLine()
                     .add("已记录报错, 不过也可以重试一下看看w")

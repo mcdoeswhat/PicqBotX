@@ -23,24 +23,21 @@ import java.util.ArrayList;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-05-05 13:16
  */
-public class CommandJS implements GroupCommand
-{
+public class CommandJS implements GroupCommand {
     private static final Long[] ALLOWED_IDS =
-    {
-            871674895L,
-            1339638753L,
-            714026292L
-    };
+            {
+                    871674895L,
+                    1339638753L,
+                    714026292L
+            };
 
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
-        if (!ArrayUtil.contains(ALLOWED_IDS, sender.getId()))
-        {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
+        if (!ArrayUtil.contains(ALLOWED_IDS, sender.getId())) {
             return "啊... 你好w";
         }
 
-        NashornScriptEngineFactory factory =  new NashornScriptEngineFactory();
+        NashornScriptEngineFactory factory = new NashornScriptEngineFactory();
         ScriptEngine engine = factory.getScriptEngine();
 
         // 环境变量w
@@ -54,20 +51,16 @@ public class CommandJS implements GroupCommand
         engine.put("account", event.getBotAccount());
         engine.put("api", event.getBotAccount().getHttpApi());
 
-        try
-        {
+        try {
             Object result = engine.eval(ArrayUtils.getTheRestArgsAsString(args, 0));
             return result == null ? "执行成功!" : result.toString();
-        }
-        catch (ScriptException e)
-        {
+        } catch (ScriptException e) {
             return e.getLocalizedMessage();
         }
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("jsexec");
     }
 }

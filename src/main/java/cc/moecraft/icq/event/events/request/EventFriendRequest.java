@@ -12,22 +12,18 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString(callSuper = true)
-public class EventFriendRequest extends EventRequest
-{
+public class EventFriendRequest extends EventRequest {
     @Override
-    public void accept()
-    {
+    public void accept() {
         getHttpApi().setFriendAndRequest(flag, true);
     }
 
-    public void reject()
-    {
+    public void reject() {
         reject(null);
     }
 
     @Override
-    public void reject(String reason)
-    {
+    public void reject(String reason) {
         getHttpApi().setFriendAndRequest(flag, false);
     }
 }

@@ -16,11 +16,9 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandSayRaw implements EverywhereCommand
-{
+public class CommandSayRaw implements EverywhereCommand {
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
         if (args.size() < 1) return "你要说什么?";
 
         event.respond(sender.getInfo().getNickname() + " >> " + ArrayUtils.getTheRestArgsAsString(args, 0), true);
@@ -28,8 +26,7 @@ public class CommandSayRaw implements EverywhereCommand
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("sayraw", "echoraw", "meraw");
     }
 }

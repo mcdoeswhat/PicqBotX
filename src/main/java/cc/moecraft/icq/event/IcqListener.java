@@ -8,7 +8,6 @@ package cc.moecraft.icq.event;
  *
  * @author Hykilpikonna
  */
-public abstract class IcqListener
-{
+public abstract class IcqListener {
 
 }

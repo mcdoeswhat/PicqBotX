@@ -10,6 +10,5 @@ package cc.moecraft.icq.exceptions;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-21 20:03
  */
-public class VerifyFailedException extends RuntimeException
-{
+public class VerifyFailedException extends RuntimeException {
 }

@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RStatus implements ReturnPojoBase
-{
+public class RStatus implements ReturnPojoBase {
     @SerializedName("app_enabled")
     @Expose
     private Boolean appEnabled;
@@ -42,8 +41,7 @@ public class RStatus implements ReturnPojoBase
 
     @Data
     @Setter(AccessLevel.NONE)
-    public class PluginsGood
-    {
+    public class PluginsGood {
         @SerializedName("async_actions")
         @Expose
         private Boolean asyncActions;

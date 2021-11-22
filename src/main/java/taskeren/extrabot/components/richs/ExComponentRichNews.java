@@ -13,8 +13,7 @@ import taskeren.extrabot.components.ExComponent;
 @ToString
 @AllArgsConstructor
 @Getter
-public class ExComponentRichNews extends ExComponent
-{
+public class ExComponentRichNews extends ExComponent {
     /**
      * 页面名称
      */

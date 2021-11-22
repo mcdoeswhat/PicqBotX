@@ -9,10 +9,8 @@ import lombok.ToString;
  * @author Hykilpikonna
  */
 @ToString(callSuper = true)
-public class EventNoticeGroupMemberIncrease extends EventNoticeGroupMemberChange
-{
-    public void kick()
-    {
+public class EventNoticeGroupMemberIncrease extends EventNoticeGroupMemberChange {
+    public void kick() {
         getHttpApi().setGroupKick(getGroupId(), getUserId());
     }
 }

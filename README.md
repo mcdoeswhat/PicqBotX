@@ -17,7 +17,6 @@
   <br>
 </h1>
 
-
 ## 2020 Aug 02 注意:
 
 CQ 已经停止运营啦 (cqp.cc), 所以这个项目作为 CQHTTP 的 SDK 也不会继续维护啦w
@@ -135,13 +134,11 @@ post_url=http://127.0.0.1:Picq端口
 
 #### 4. 配置完成! 启动 酷Q!
 
-
 <br>
 
 <a name="development"></a>
 基础开发概括:
 --------
-
 
 #### 开发文档 [(JavaDocs)](http://gitpage.hydev.org/PicqBotX/)
 
@@ -149,7 +146,6 @@ post_url=http://127.0.0.1:Picq端口
 * 墙了的话, 去`git clone`或者`download zip`
 * 然后打开`Docs`文件夹,
 * 打开`Index.html`就是一样的啦w
-
 
 #### 启动机器人: 基础开发概括 (Main类):
 
@@ -206,7 +202,7 @@ bot.enableCommandManager("bot -", "!", "/", "~");
 bot.getCommandManager().registerCommands(new 指令1(), new 指令2(), ...);
 ```
 
-启动机器人: 
+启动机器人:
 
 ```java
 // 启动机器人, 不会占用主线程
@@ -299,7 +295,6 @@ PicqConfig config = new PicqConfig(31092);
 | `setLogPath("logs")` | Logger日志路径 (设为空就不输出文件了) |
 | `setLogFileName("PicqBotX-Log")` | Logger日志文件名 |
 | `setLogInit(true)` | 是否输出启动日志 |
-
 
 <a name="events"></a>
 
@@ -659,6 +654,7 @@ config.setSecret("这里填Secret")
 <br>
 
 #### 如果发现 Bug 的话, 请开一个 [issue](https://github.com/HyDevelop/PicqBotX/issues) 说明问题
+
 #### 或者加开发群 498386389 问吧w
 
 <br>

@@ -13,8 +13,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ExComponentContact extends ExComponent
-{
+public class ExComponentContact extends ExComponent {
     /**
      * 名片指向的QQ号或群号
      */
@@ -27,14 +26,11 @@ public class ExComponentContact extends ExComponent
      */
     final ContactTo to;
 
-    public enum ContactTo
-    {
+    public enum ContactTo {
         USER, GROUP;
 
-        public static ContactTo parse(String str)
-        {
-            switch (str)
-            {
+        public static ContactTo parse(String str) {
+            switch (str) {
                 case "qq":
                     return USER;
                 case "group":

@@ -10,8 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ExComponentRecord extends ExComponentSendable
-{
+public class ExComponentRecord extends ExComponentSendable {
     /**
      * 语音储存在本地的位置
      */
@@ -25,11 +24,10 @@ public class ExComponentRecord extends ExComponentSendable
     /**
      * 构建一个内部语音组件
      *
-     * @param file 语音本地地址
+     * @param file  语音本地地址
      * @param magic 是否启用变声器
      */
-    protected ExComponentRecord(String file, boolean magic)
-    {
+    protected ExComponentRecord(String file, boolean magic) {
         this.file = file;
         this.magic = magic;
     }
@@ -39,14 +37,12 @@ public class ExComponentRecord extends ExComponentSendable
      *
      * @param fileOrUrl 语音地址
      */
-    public ExComponentRecord(String fileOrUrl)
-    {
+    public ExComponentRecord(String fileOrUrl) {
         this(fileOrUrl, false);
     }
 
     @Override
-    public String toCQCode()
-    {
+    public String toCQCode() {
         return "[CQ:record,file=" + file + "]";
     }
 }

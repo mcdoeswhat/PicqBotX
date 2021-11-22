@@ -19,24 +19,20 @@ import taskeren.extrabot.components.richs.ExComponentRichNews;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ExComponentRich extends ExComponent
-{
+public class ExComponentRich extends ExComponent {
     final String title;
 
     final String text;
 
     final String content;
 
-    public class To
-    {
+    public class To {
         /**
          * 转换为音乐分享富文本组件。
          */
-        public ExComponentRichMusic music()
-        {
+        public ExComponentRichMusic music() {
             JSONObject json = JSONUtil.parseObj(content);
-            if (json.containsKey("music"))
-            {
+            if (json.containsKey("music")) {
                 JSONObject d = json.getJSONObject("music");
                 return new ExComponentRichMusic(
                         d.getStr("title"),
@@ -46,9 +42,7 @@ public class ExComponentRich extends ExComponent
                         d.getStr("musicUrl"),
                         d.getStr("jumpUrl")
                 );
-            }
-            else
-            {
+            } else {
                 throw new UnsupportedOperationException();
             }
         }
@@ -56,11 +50,9 @@ public class ExComponentRich extends ExComponent
         /**
          * 转换为网页分享富文本组件。
          */
-        public ExComponentRichNews news()
-        {
+        public ExComponentRichNews news() {
             JSONObject json = JSONUtil.parseObj(content);
-            if (json.containsKey("news"))
-            {
+            if (json.containsKey("news")) {
                 JSONObject d = json.getJSONObject("news");
                 return new ExComponentRichNews(
                         d.getStr("title"),
@@ -69,9 +61,7 @@ public class ExComponentRich extends ExComponent
                         d.getStr("tag"),
                         d.getStr("jumpUrl")
                 );
-            }
-            else
-            {
+            } else {
                 throw new UnsupportedOperationException();
             }
         }

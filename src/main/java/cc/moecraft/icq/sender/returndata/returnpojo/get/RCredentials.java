@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RCredentials implements ReturnPojoBase
-{
+public class RCredentials implements ReturnPojoBase {
     @SerializedName("cookies")
     @Expose
     private String cookies;

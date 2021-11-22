@@ -20,8 +20,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RBoolean implements ReturnPojoBase
-{
+public class RBoolean implements ReturnPojoBase {
     @SerializedName("yes")
     @Expose
     private Boolean yes;

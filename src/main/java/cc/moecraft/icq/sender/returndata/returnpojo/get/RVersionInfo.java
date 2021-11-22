@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RVersionInfo implements ReturnPojoBase
-{
+public class RVersionInfo implements ReturnPojoBase {
     @SerializedName("coolq_directory")
     @Expose
     private String coolqDirectory;

@@ -17,31 +17,25 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
  *
  * @author Hykilpikonna
  */
-public class TestListener extends IcqListener
-{
+public class TestListener extends IcqListener {
     @EventHandler
-    public void onPMEvent(EventPrivateMessage event)
-    {
+    public void onPMEvent(EventPrivateMessage event) {
         // System.out.println("接到消息");
 
         // 纯属测试没有嘲讽意思啦...
-        if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
-        {
+        if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?")) {
             event.respond("其实是我HyDevelop/PicqBotX哒!");
         }
 
-        if (event.getMessage().equals("测试给小桂发Hi"))
-        {
+        if (event.getMessage().equals("测试给小桂发Hi")) {
             event.getHttpApi().sendPrivateMsg(871674895, "hi");
         }
 
-        if (event.getMessage().equals("测试回复数据"))
-        {
+        if (event.getMessage().equals("测试回复数据")) {
             testDataReturn(event.getBot());
         }
 
-        if (event.getMessage().equals("测试MessageBuilder"))
-        {
+        if (event.getMessage().equals("测试MessageBuilder")) {
             event.respond(new MessageBuilder()
                     .add("图片前面的消息").newLine()
                     .add(new ComponentImageBase64("iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==")).newLine()
@@ -54,8 +48,7 @@ public class TestListener extends IcqListener
     /**
      * 用来测试回复数据的
      */
-    public void testDataReturn(PicqBotX bot)
-    {
+    public void testDataReturn(PicqBotX bot) {
         // 测试成功 #1: 普通泛型
         // ReturnData<RLoginInfo> returnData = bot.getAccountManager().getNonAccountSpecifiedApi().getLoginInfo();
         // bot.getLogger().log("Return Data = " + returnData);

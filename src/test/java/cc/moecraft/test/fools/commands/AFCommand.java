@@ -18,21 +18,18 @@ import java.util.Random;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-31 22:29
  */
-public abstract class AFCommand implements GroupCommand
-{
+public abstract class AFCommand implements GroupCommand {
     public static ArrayList<Long> groups = new ArrayList<>();
 
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
         // 一个群只发一次
         if (groups.contains(group.getId())) return null;
         groups.add(group.getId());
 
         // 随机防封号嗯x
         int rand = new Random().nextInt(6);
-        switch (rand)
-        {
+        switch (rand) {
             case 0:
                 return "噗哈哈愚人节快乐ww";
             case 1:

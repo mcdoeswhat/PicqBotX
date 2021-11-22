@@ -21,8 +21,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RFile implements ReturnPojoBase
-{
+public class RFile implements ReturnPojoBase {
     @SerializedName("file")
     @Expose
     private String file;

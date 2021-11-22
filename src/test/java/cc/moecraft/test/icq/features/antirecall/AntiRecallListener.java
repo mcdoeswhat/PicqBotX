@@ -19,20 +19,15 @@ import static cc.moecraft.icq.command.CommandArgsParser.parse;
  *
  * @author Hykilpikonna
  */
-public class AntiRecallListener extends IcqListener
-{
+public class AntiRecallListener extends IcqListener {
     public static HashMap<Long, ArrayList<String>> groupTexts = new HashMap<>();
 
     @EventHandler
-    public void onGroupMessageEvent(EventGroupMessage event)
-    {
-        try
-        {
+    public void onGroupMessageEvent(EventGroupMessage event) {
+        try {
             parse(event.getBot().getCommandManager(), event.getMessage(), true);
             // 如果是指令, 就忽略
-        }
-        catch (NotACommandException | CommandNotFoundException ignored)
-        {
+        } catch (NotACommandException | CommandNotFoundException ignored) {
             if (!groupTexts.containsKey(event.getGroupId())) groupTexts.put(event.getGroupId(), new ArrayList<>());
 
             groupTexts.get(event.getGroupId()).add(event.getBot().getUserManager().getUserFromID(event.getSenderId()).getInfo().getNickname() + " >> " + event.getMessage());

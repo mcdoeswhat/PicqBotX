@@ -16,29 +16,23 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandBanSelf implements GroupCommand
-{
+public class CommandBanSelf implements GroupCommand {
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("banself", "banme", "禁言我", "闭嘴", "闭嘴!");
     }
 
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
         if (sender.isAdmin()) return "不好意思不好意思权限狗打扰了";
         if (!event.isAdmin()) return "但我不是管理员";
 
         long period;
 
-        try
-        {
+        try {
             if (args.size() == 0) period = 5 * 60L;
             else period = Long.parseLong(args.get(0));
-        }
-        catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             return "错误: 输入无法转换为数字";
         }
 

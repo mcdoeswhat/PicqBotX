@@ -13,8 +13,7 @@ import taskeren.extrabot.components.ExComponent;
 @ToString
 @AllArgsConstructor
 @Getter
-public class ExComponentRichMusic extends ExComponent
-{
+public class ExComponentRichMusic extends ExComponent {
     /**
      * 歌曲名称
      */

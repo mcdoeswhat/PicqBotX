@@ -12,13 +12,11 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class ComponentImageBase64 extends MessageComponent
-{
+public class ComponentImageBase64 extends MessageComponent {
     public String base64;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:image,file=base64://" + base64 + "]";
     }
 }

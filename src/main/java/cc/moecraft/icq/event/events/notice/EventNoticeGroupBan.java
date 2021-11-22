@@ -18,8 +18,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventNoticeGroupBan extends EventNotice
-{
+public class EventNoticeGroupBan extends EventNotice {
     @SerializedName("sub_type")
     @Expose
     protected BanType type;
@@ -40,18 +39,8 @@ public class EventNoticeGroupBan extends EventNotice
     @Expose
     protected Long duration;
 
-    public enum BanType
-    {
-        @SerializedName("ban")
-        BAN,
-
-        @SerializedName("lift_ban")
-        LIFT_BAN;
-    }
-
     @Override
-    public boolean contentEquals(Object o)
-    {
+    public boolean contentEquals(Object o) {
         if (!(o instanceof EventNoticeGroupBan)) return false;
         EventNoticeGroupBan other = (EventNoticeGroupBan) o;
 
@@ -61,5 +50,13 @@ public class EventNoticeGroupBan extends EventNotice
                 other.getUserId().equals(getUserId()) &&
                 other.getDuration().equals(getDuration()) &&
                 other.getType().equals(getType());
+    }
+
+    public enum BanType {
+        @SerializedName("ban")
+        BAN,
+
+        @SerializedName("lift_ban")
+        LIFT_BAN;
     }
 }

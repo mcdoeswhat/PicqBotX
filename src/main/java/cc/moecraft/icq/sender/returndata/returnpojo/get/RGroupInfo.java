@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RGroupInfo implements ReturnPojoBase
-{
+public class RGroupInfo implements ReturnPojoBase {
     @SerializedName("group_id")
     @Expose
     private Long groupId;

@@ -27,8 +27,7 @@ import static java.lang.Integer.parseInt;
  * @since 2019-03-23 13:01
  */
 @Getter
-public class PicqHttpServer extends HttpServer
-{
+public class PicqHttpServer extends HttpServer {
     /**
      * Socket服务器对象
      */
@@ -43,38 +42,33 @@ public class PicqHttpServer extends HttpServer
      * 构造一个Http服务器
      *
      * @param port 端口
-     * @param bot 机器人
+     * @param bot  机器人
      */
-    public PicqHttpServer(int port, PicqBotX bot)
-    {
+    public PicqHttpServer(int port, PicqBotX bot) {
         super(port, bot);
     }
 
     @Override
-    protected void init() throws Exception
-    {
+    protected void init() throws Exception {
         server = new ServerSocket(getPort());
         logger.log(GREEN + "启动成功! 开始接收消息...");
     }
 
     @Override
-    protected void accept() throws Exception
-    {
+    protected void accept() throws Exception {
         // 获取新的请求
         socket = server.accept();
     }
 
     @Override
-    protected boolean validate() throws Exception
-    {
+    protected boolean validate() throws Exception {
         // 读取请求字符
         InputStream in = socket.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 
         // 读第一行
         String line = reader.readLine();
-        if (line == null || line.isEmpty())
-        {
+        if (line == null || line.isEmpty()) {
             return failed(Reason.REQUEST_IS_EMPTY);
         }
 
@@ -82,8 +76,7 @@ public class PicqHttpServer extends HttpServer
         String[] info = line.split(" ");
 
         // 必须是POST
-        if (!info[0].equalsIgnoreCase("post"))
-        {
+        if (!info[0].equalsIgnoreCase("post")) {
             return failed(INCORRECT_REQUEST_METHOD);
         }
 
@@ -91,14 +84,11 @@ public class PicqHttpServer extends HttpServer
         int contentLength = 0;
 
         // 判断Header是不是对的, 顺便获取Content-Length
-        while ((line = reader.readLine()) != null && !line.isEmpty())
-        {
-            if (!validateLine(line))
-            {
+        while ((line = reader.readLine()) != null && !line.isEmpty()) {
+            if (!validateLine(line)) {
                 return false;
             }
-            if (line.contains("Content-Length: "))
-            {
+            if (line.contains("Content-Length: ")) {
                 contentLength = parseInt(line.replace("Content-Length: ", ""));
             }
         }
@@ -115,33 +105,25 @@ public class PicqHttpServer extends HttpServer
      * @param line 一行
      * @return 是否正确
      */
-    private boolean validateLine(String line)
-    {
-        if (line.contains("Content-Type: "))
-        {
+    private boolean validateLine(String line) {
+        if (line.contains("Content-Type: ")) {
             line = line.toLowerCase();
-            if (!line.contains("application/json"))
-            {
+            if (!line.contains("application/json")) {
                 return failed(INCORRECT_APPLICATION_TYPE);
             }
-            if (!line.contains("charset=utf-8"))
-            {
+            if (!line.contains("charset=utf-8")) {
                 return failed(INCORRECT_CHARSET);
             }
-        }
-        else if (line.contains("User-Agent: ") &&
-                !line.replace("User-Agent: ", "").matches(HTTP_API_VERSION_DETECTION))
-        {
+        } else if (line.contains("User-Agent: ") &&
+                !line.replace("User-Agent: ", "").matches(HTTP_API_VERSION_DETECTION)) {
             return failed(INCORRECT_VERSION);
         }
         return true;
     }
 
     @Override
-    protected void close() throws Exception
-    {
-        if (socket != null && !socket.isClosed())
-        {
+    protected void close() throws Exception {
+        if (socket != null && !socket.isClosed()) {
             socket.close();
         }
     }

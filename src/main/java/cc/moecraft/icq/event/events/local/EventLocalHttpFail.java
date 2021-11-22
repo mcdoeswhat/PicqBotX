@@ -11,12 +11,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class EventLocalHttpFail extends EventLocal
-{
+public class EventLocalHttpFail extends EventLocal {
     protected Reason fail; // 怎样失败的
 
-    public enum Reason
-    {
+    public enum Reason {
         UNKNOWN, REQUEST_IS_EMPTY,
         INCORRECT_VERSION, INCORRECT_CHARSET, INCORRECT_APPLICATION_TYPE,
         INCORRECT_REQUEST_METHOD, INCORRECT_SHA1

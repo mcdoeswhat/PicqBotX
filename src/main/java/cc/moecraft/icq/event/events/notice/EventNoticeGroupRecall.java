@@ -80,8 +80,7 @@ public class EventNoticeGroupRecall extends EventNotice {
      *
      * @return 是不是管理员
      */
-    public boolean isMessageSenderAdmin()
-    {
+    public boolean isMessageSenderAdmin() {
         return getMessageSenderGroupUser().isAdmin();
     }
 
@@ -90,8 +89,7 @@ public class EventNoticeGroupRecall extends EventNotice {
      *
      * @return 是不是管理员
      */
-    public boolean isAdmin()
-    {
+    public boolean isAdmin() {
         return getBot().getGroupUserManager().getUserFromID(selfId, getGroup()).isAdmin();
     }
 

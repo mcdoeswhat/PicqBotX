@@ -17,8 +17,7 @@ import java.util.List;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RGroupDetail implements ReturnPojoBase
-{
+public class RGroupDetail implements ReturnPojoBase {
     @SerializedName("admin_count")
     @Expose
     private Long adminCount;
@@ -65,8 +64,7 @@ public class RGroupDetail implements ReturnPojoBase
 
     @Data
     @Setter(AccessLevel.NONE)
-    public static class Admin
-    {
+    public static class Admin {
         @SerializedName("nickname")
         @Expose
         private String nickname;

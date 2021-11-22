@@ -15,8 +15,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class User
-{
+public class User {
     private final PicqBotX bot;
 
     private final long id;
@@ -28,10 +27,8 @@ public class User
      *
      * @return 数据 (不一定是最新)
      */
-    public RStrangerInfo getInfo()
-    {
-        if (info != null)
-        {
+    public RStrangerInfo getInfo() {
+        if (info != null) {
             return info;
         }
         return refreshInfo(false);
@@ -43,8 +40,7 @@ public class User
      * @param noCache 是否不用缓存
      * @return 更新的数据
      */
-    public RStrangerInfo refreshInfo(boolean noCache)
-    {
+    public RStrangerInfo refreshInfo(boolean noCache) {
         return info = bot.getAccountManager().getNonAccountSpecifiedApi().getStrangerInfo(id, noCache).getData();
     }
 }

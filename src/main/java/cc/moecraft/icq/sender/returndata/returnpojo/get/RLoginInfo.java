@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RLoginInfo implements ReturnPojoBase
-{
+public class RLoginInfo implements ReturnPojoBase {
     @SerializedName("nickname")
     @Expose
     private String nickname;

@@ -17,20 +17,18 @@ import static cc.moecraft.utils.StringUtils.repeat;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-21 19:58
  */
-public class MiscUtils
-{
+public class MiscUtils {
     public static boolean disabled = false;
 
     /**
      * 输出一行"初始化完成"的日志
      *
      * @param logger 日志对象
-     * @param name 要输出的名字
+     * @param name   要输出的名字
      * @param greens 绿色星号数量
-     * @param reds 红色星号数量
+     * @param reds   红色星号数量
      */
-    public static void logInitDone(HyLogger logger, String name, int greens, int reds)
-    {
+    public static void logInitDone(HyLogger logger, String name, int greens, int reds) {
         if (disabled) return;
 
         String green = repeat("*", greens);
@@ -48,11 +46,10 @@ public class MiscUtils
      * 日志一个资源
      *
      * @param logger Logger
-     * @param name 资源名
-     * @param vars 变量
+     * @param name   资源名
+     * @param vars   变量
      */
-    public static void logResource(HyLogger logger, String name, Object... vars)
-    {
+    public static void logResource(HyLogger logger, String name, Object... vars) {
         if (disabled) return;
 
         ResourceUtils.printResource(MiscUtils.class.getClassLoader(),

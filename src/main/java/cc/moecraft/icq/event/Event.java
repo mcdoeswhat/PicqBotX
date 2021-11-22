@@ -17,41 +17,34 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public abstract class Event implements ContentComparable
-{
-    @SerializedName("post_type")
-    @Expose
-    protected String postType;
-
+public abstract class Event implements ContentComparable {
     @SerializedName("self_id")
     @Expose
     public Long selfId;
-
+    @SerializedName("post_type")
+    @Expose
+    protected String postType;
     @SerializedName("time")
     @Expose
     protected Long time;
 
     protected PicqBotX bot;
 
-    public Event setBot(PicqBotX bot)
-    {
+    public Event setBot(PicqBotX bot) {
         this.bot = bot;
         return this;
     }
 
-    public IcqHttpApi getHttpApi()
-    {
+    public IcqHttpApi getHttpApi() {
         return getBotAccount().getHttpApi();
     }
 
-    public BotAccount getBotAccount()
-    {
+    public BotAccount getBotAccount() {
         return getBot().getAccountManager().getIdIndex().get(selfId);
     }
 
     @Override
-    public boolean contentEquals(Object o)
-    {
+    public boolean contentEquals(Object o) {
         if (!(o instanceof Event)) return false;
         Event other = (Event) o;
 

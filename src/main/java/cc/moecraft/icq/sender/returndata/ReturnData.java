@@ -12,8 +12,7 @@ import lombok.Data;
  * @author Hykilpikonna
  */
 @Data
-public class ReturnData<T extends ReturnPojoBase>
-{
+public class ReturnData<T extends ReturnPojoBase> {
     private T data;
 
     private Long returnCode;

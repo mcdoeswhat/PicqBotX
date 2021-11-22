@@ -15,8 +15,7 @@ import java.util.Map;
  * @author Hykilpikonna
  */
 @RequiredArgsConstructor
-public class GroupUserManager
-{
+public class GroupUserManager {
     private final PicqBotX bot;
 
     // <GroupID, <UserID, UserCache>>
@@ -26,14 +25,12 @@ public class GroupUserManager
      * 用 ID 和群对象获取用户对象
      *
      * @param userId 用户 ID
-     * @param group 群对象
+     * @param group  群对象
      * @return 用户对象
      */
-    public GroupUser getUserFromID(long userId, Group group)
-    {
+    public GroupUser getUserFromID(long userId, Group group) {
         // 没有群缓存
-        if (!groupCache.containsKey(group.getId()))
-        {
+        if (!groupCache.containsKey(group.getId())) {
             groupCache.put(group.getId(), new HashMap<>());
         }
 
@@ -41,8 +38,7 @@ public class GroupUserManager
         Map<Long, GroupUser> userCache = groupCache.get(group.getId());
 
         // 获取用户
-        if (!userCache.containsKey(userId))
-        {
+        if (!userCache.containsKey(userId)) {
             userCache.put(userId, new GroupUser(bot, userId, group));
         }
 

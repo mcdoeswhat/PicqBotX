@@ -16,60 +16,43 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandAntiRecall implements GroupCommand
-{
+public class CommandAntiRecall implements GroupCommand {
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
         int messageIndex;
         ArrayList<String> messages = AntiRecallListener.groupTexts.get(group.getId());
         if (messages == null) return "目前这个群里还没有消息记录";
 
-        if (args.size() == 0)
-        {
+        if (args.size() == 0) {
             messageIndex = messages.size() - 1;
-        }
-        else if (args.size() == 1)
-        {
-            if (args.get(0).equalsIgnoreCase("index")) return "到现在一共在这个群记录了" + AntiRecallListener.groupTexts.get(group.getId()).size() + "条消息";
+        } else if (args.size() == 1) {
+            if (args.get(0).equalsIgnoreCase("index"))
+                return "到现在一共在这个群记录了" + AntiRecallListener.groupTexts.get(group.getId()).size() + "条消息";
 
-            try
-            {
+            try {
                 messageIndex = messages.size() - Integer.parseInt(args.get(0));
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 return "只能输入数字或者abs哦!";
             }
-        }
-        else if (args.size() == 2)
-        {
+        } else if (args.size() == 2) {
             if (!args.get(0).equalsIgnoreCase("abs")) return "你要干什么?";
 
-            try
-            {
+            try {
                 messageIndex = Integer.parseInt(args.get(1));
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 return "只能输入数字或者abs哦!";
             }
-        }
-        else return "你要干什么?";
+        } else return "你要干什么?";
 
-        try
-        {
+        try {
             return messages.get(messageIndex);
-        }
-        catch (IndexOutOfBoundsException e)
-        {
+        } catch (IndexOutOfBoundsException e) {
             return "数字超出记录范围了, 目前这个群里只记录了" + messages.size() + "项消息";
         }
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("antirecall", "ar", "防撤回");
     }
 }

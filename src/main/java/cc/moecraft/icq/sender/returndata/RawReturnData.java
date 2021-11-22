@@ -19,8 +19,7 @@ import java.util.ArrayList;
  * @author Hykilpikonna
  */
 @Data
-public class RawReturnData
-{
+public class RawReturnData {
     @SerializedName("data")
     @Expose
     private JsonElement data;
@@ -37,11 +36,10 @@ public class RawReturnData
      * 处理数据
      *
      * @param typeOfT Data的POJO数据类型 例子: RLoginInfo.class
-     * @param <T> 数据类型
+     * @param <T>     数据类型
      * @return 处理后的数据
      */
-    public <T extends ReturnPojoBase> ReturnData<T> processData(Type typeOfT)
-    {
+    public <T extends ReturnPojoBase> ReturnData<T> processData(Type typeOfT) {
         ReturnData<T> returnData = new ReturnData<>();
 
         returnData.setReturnCode(returnCode);
@@ -55,11 +53,10 @@ public class RawReturnData
      * 处理数据为列表格式
      *
      * @param typeOfT Data的POJO数据类型 例子: RGroupList.class
-     * @param <T> 数据类型
+     * @param <T>     数据类型
      * @return 处理后的数据
      */
-    public <T extends ReturnPojoBase> ReturnListData<T> processDataAsList(Type typeOfT)
-    {
+    public <T extends ReturnPojoBase> ReturnListData<T> processDataAsList(Type typeOfT) {
         ReturnListData<T> returnData = new ReturnListData<>();
 
         returnData.setReturnCode(returnCode);
@@ -67,8 +64,7 @@ public class RawReturnData
 
         ArrayList<T> returnList = new ArrayList<>();
 
-        for (JsonElement element : data.getAsJsonArray())
-        {
+        for (JsonElement element : data.getAsJsonArray()) {
             returnList.add(new Gson().fromJson(element, typeOfT));
         }
 

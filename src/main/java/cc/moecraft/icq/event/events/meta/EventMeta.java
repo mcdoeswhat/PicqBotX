@@ -19,8 +19,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventMeta extends Event
-{
+public class EventMeta extends Event {
     @SerializedName("meta_event_type")
     @Expose
     private String metaEventType;

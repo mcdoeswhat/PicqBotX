@@ -27,43 +27,36 @@ import static cc.moecraft.logger.format.AnsiColor.*;
  * @author Hykilpikonna
  */
 @EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor @Data
-public class SimpleTextLoggingListener extends IcqListener
-{
+@AllArgsConstructor
+@Data
+public class SimpleTextLoggingListener extends IcqListener {
     private static final int nicknameLength = 16;
 
-    public static String getGroupName(PicqBotX bot, long groupId)
-    {
+    public static String getGroupName(PicqBotX bot, long groupId) {
         ReturnListData<RGroup> returnListData = bot.getAccountManager().getNonAccountSpecifiedApi().getGroupList();
-        for (RGroup group : returnListData.getData())
-        {
+        for (RGroup group : returnListData.getData()) {
             if (group.getGroupId().equals(groupId)) return group.getGroupName();
         }
         return "未知群聊";
     }
 
-    public static String getNickname(EventMessage event)
-    {
+    public static String getNickname(EventMessage event) {
         return event.getHttpApi().getStrangerInfo(event.getSenderId()).getData().getNickname();
     }
 
-    public static String getNickname(EventLocalSendMessage event)
-    {
+    public static String getNickname(EventLocalSendMessage event) {
         return event.getHttpApi().getStrangerInfo(event.getId()).getData().getNickname();
     }
 
-    public static String getSelfNickname(EventMessage event)
-    {
+    public static String getSelfNickname(EventMessage event) {
         return event.getHttpApi().getLoginInfo().getData().getNickname();
     }
 
-    public static String getFixedLengthNickname(String nickname, boolean space, boolean center)
-    {
+    public static String getFixedLengthNickname(String nickname, boolean space, boolean center) {
         int nicknameLength = SimpleTextLoggingListener.nicknameLength;
 
-        for (char c : nickname.toCharArray())
-        {
-            if (Character.UnicodeScript.of(c) == Character.UnicodeScript.HAN) nicknameLength --;
+        for (char c : nickname.toCharArray()) {
+            if (Character.UnicodeScript.of(c) == Character.UnicodeScript.HAN) nicknameLength--;
         }
 
         if (nickname.length() == nicknameLength) return nickname;
@@ -71,18 +64,13 @@ public class SimpleTextLoggingListener extends IcqListener
         StringBuilder result = new StringBuilder();
         boolean dots = nickname.length() > nicknameLength;
 
-        for (int i = 0; i < nicknameLength; i++)
-        {
+        for (int i = 0; i < nicknameLength; i++) {
             if (nicknameLength - i < 4 && dots) result.append(".");
-            else if (i < nickname.length())
-            {
+            else if (i < nickname.length()) {
                 result.append(nickname.charAt(i));
-            }
-            else if (space)
-            {
+            } else if (space) {
                 result.append(" ");
-                if (center)
-                {
+                if (center) {
                     i++;
                     if (i < nicknameLength) result.insert(0, " ");
                 }
@@ -93,8 +81,7 @@ public class SimpleTextLoggingListener extends IcqListener
     }
 
     @EventHandler
-    public void onPMEvent(EventPrivateMessage event)
-    {
+    public void onPMEvent(EventPrivateMessage event) {
         event.getBot().getLogger().log(String.format("%s[%sPM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, YELLOW, WHITE, YELLOW,
                 getFixedLengthNickname(getSelfNickname(event), true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -102,8 +89,7 @@ public class SimpleTextLoggingListener extends IcqListener
     }
 
     @EventHandler
-    public void onGMEvent(EventGroupMessage event)
-    {
+    public void onGMEvent(EventGroupMessage event) {
         event.getBot().getLogger().log(String.format("%s[%sGM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, RED, WHITE, RED,
                 getFixedLengthNickname(getGroupName(event.getBot(), event.getGroupId()), true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -111,8 +97,7 @@ public class SimpleTextLoggingListener extends IcqListener
     }
 
     @EventHandler
-    public void onDMEvent(EventDiscussMessage event)
-    {
+    public void onDMEvent(EventDiscussMessage event) {
         event.getBot().getLogger().log(String.format("%s[%sDM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, WHITE, WHITE, WHITE,
                 getFixedLengthNickname(String.valueOf(event.getDiscussId()), true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -120,8 +105,7 @@ public class SimpleTextLoggingListener extends IcqListener
     }
 
     @EventHandler
-    public void onSendPMEvent(EventLocalSendPrivateMessage event)
-    {
+    public void onSendPMEvent(EventLocalSendPrivateMessage event) {
         event.getBot().getLogger().log(String.format("%s[%sSO%s] [%s%s%s]%s %s%s >> %s%s", WHITE, GREEN, WHITE, GREEN,
                 getFixedLengthNickname("这个机器人 ", true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -129,8 +113,7 @@ public class SimpleTextLoggingListener extends IcqListener
     }
 
     @EventHandler
-    public void onSendEvent(EventLocalSendGroupMessage event)
-    {
+    public void onSendEvent(EventLocalSendGroupMessage event) {
         event.getBot().getLogger().log(String.format("%s[%sSO%s] [%s%s%s]%s %s%s >> %s%s", WHITE, GREEN, WHITE, GREEN,
                 getFixedLengthNickname("这个机器人 ", true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getGroupName(event.getBot(), event.getId()), true, false), RED, RESET,

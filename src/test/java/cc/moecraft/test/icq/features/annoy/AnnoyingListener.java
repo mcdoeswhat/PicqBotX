@@ -15,24 +15,20 @@ import java.util.HashMap;
  *
  * @author Hykilpikonna
  */
-public class AnnoyingListener extends IcqListener
-{
+public class AnnoyingListener extends IcqListener {
     public static HashMap<Long, ArrayList<Long>> annoyingQqMap = new HashMap<>();
     public static ArrayList<Long> annoyingGroupList = new ArrayList<>();
 
     @EventHandler
-    public void onGroupText(EventGroupMessage event)
-    {
-        if (annoyingGroupList.contains(event.getGroupId()))
-        {
+    public void onGroupText(EventGroupMessage event) {
+        if (annoyingGroupList.contains(event.getGroupId())) {
             event.respond(event.getMessage());
             return;
         }
 
         if (!annoyingQqMap.containsKey(event.getGroupId())) return;
 
-        if (annoyingQqMap.get(event.getGroupId()).contains(event.getSenderId()))
-        {
+        if (annoyingQqMap.get(event.getGroupId()).contains(event.getSenderId())) {
             event.respond(event.getMessage());
         }
     }

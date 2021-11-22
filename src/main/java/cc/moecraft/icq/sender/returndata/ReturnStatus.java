@@ -8,8 +8,7 @@ package cc.moecraft.icq.sender.returndata;
  *
  * @author Hykilpikonna
  */
-public enum ReturnStatus
-{
+public enum ReturnStatus {
     ok,     // 成功
     async,  // 异步
     failed  // 失败

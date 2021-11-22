@@ -12,13 +12,11 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class ComponentAt extends MessageComponent
-{
+public class ComponentAt extends MessageComponent {
     public long id;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:at,qq=" + id + "]";
     }
 }

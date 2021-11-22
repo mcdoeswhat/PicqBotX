@@ -8,7 +8,6 @@ package cc.moecraft.icq.exceptions;
  *
  * @author Hykilpikonna
  */
-public class InvalidSendingURLException extends Exception
-{
+public class InvalidSendingURLException extends Exception {
 
 }

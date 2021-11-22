@@ -16,8 +16,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventNoticeGroupAdminChange extends EventNotice
-{
+public class EventNoticeGroupAdminChange extends EventNotice {
     @SerializedName("group_id")
     @Expose
     protected Long groupId;
@@ -29,8 +28,7 @@ public class EventNoticeGroupAdminChange extends EventNotice
     protected GroupEventMethods groupMethods = null;
 
     @Override
-    public boolean contentEquals(Object o)
-    {
+    public boolean contentEquals(Object o) {
         if (!(o instanceof EventNoticeGroupAdminChange)) return false;
         EventNoticeGroupAdminChange other = (EventNoticeGroupAdminChange) o;
 
@@ -40,18 +38,15 @@ public class EventNoticeGroupAdminChange extends EventNotice
                 other.getUserId().equals(getUserId());
     }
 
-    public GroupEventMethods getGroupMethods()
-    {
-        if (groupMethods != null)
-        {
+    public GroupEventMethods getGroupMethods() {
+        if (groupMethods != null) {
             return groupMethods;
         }
         return groupMethods = new GroupEventMethods(this, groupId);
     }
 
     @Override
-    public BotAccount getBotAccount()
-    {
+    public BotAccount getBotAccount() {
         return getGroupMethods().getBotAccount();
     }
 }

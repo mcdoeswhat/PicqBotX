@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RStrangerInfo implements ReturnPojoBase
-{
+public class RStrangerInfo implements ReturnPojoBase {
     @SerializedName("age")
     @Expose
     private Long age;

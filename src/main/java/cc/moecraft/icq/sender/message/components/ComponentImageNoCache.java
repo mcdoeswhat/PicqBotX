@@ -8,10 +8,8 @@ package cc.moecraft.icq.sender.message.components;
  *
  * @author Hykilpikonna
  */
-public class ComponentImageNoCache extends ComponentImage
-{
-    public ComponentImageNoCache(String fileOrURL)
-    {
+public class ComponentImageNoCache extends ComponentImage {
+    public ComponentImageNoCache(String fileOrURL) {
         super(fileOrURL);
     }
 
@@ -20,8 +18,7 @@ public class ComponentImageNoCache extends ComponentImage
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         if (isLocalFile) {
             return "[CQ:image,cache=0,file=file:///" + super.fileOrURL + "]";
         } else {

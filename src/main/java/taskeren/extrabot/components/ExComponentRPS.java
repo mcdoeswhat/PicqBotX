@@ -10,8 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ExComponentRPS extends ExComponentSendable
-{
+public class ExComponentRPS extends ExComponentSendable {
     /**
      * 石头剪刀布
      */
@@ -22,35 +21,29 @@ public class ExComponentRPS extends ExComponentSendable
      *
      * @param rps
      */
-    protected ExComponentRPS(RPS rps)
-    {
+    protected ExComponentRPS(RPS rps) {
         this.type = rps;
     }
 
     /**
      * 构造一个石头剪刀布组件（随机）
      */
-    public ExComponentRPS()
-    {
+    public ExComponentRPS() {
         this(null);
     }
 
     @Override
-    public String toCQCode()
-    {
+    public String toCQCode() {
         return "[CQ:rps,type=1]";
     }
 
-    public enum RPS
-    {
+    public enum RPS {
         ROCK,     // 石头
         PAPER,    // 布
         SCISSORS; // 剪刀
 
-        public static RPS parse(int type)
-        {
-            switch (type)
-            {
+        public static RPS parse(int type) {
+            switch (type) {
                 case 1:
                     return ROCK;
                 case 2:

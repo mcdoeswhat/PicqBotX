@@ -14,13 +14,11 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class AccountManagerListener extends IcqListener
-{
+public class AccountManagerListener extends IcqListener {
     private AccountManager accountManager;
 
     @EventHandler
-    public void onGroupMessage(EventLocalSendGroupMessage event)
-    {
+    public void onGroupMessage(EventLocalSendGroupMessage event) {
         accountManager.recordMessage(event);
     }
 }

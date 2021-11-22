@@ -16,21 +16,18 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventPrivateMessage extends EventMessage
-{
+public class EventPrivateMessage extends EventMessage {
     @SerializedName("sub_type")
     @Expose
     protected String subType;
 
     @Override
-    public ReturnData<RMessageReturnData> respond(String message, boolean raw)
-    {
+    public ReturnData<RMessageReturnData> respond(String message, boolean raw) {
         return respondPrivateMessage(message, raw);
     }
 
     @Override
-    public User getSender()
-    {
+    public User getSender() {
         return getBot().getUserManager().getUserFromID(senderId);
     }
 }

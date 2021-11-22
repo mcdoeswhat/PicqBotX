@@ -19,30 +19,34 @@ import static cc.moecraft.utils.StringCodecUtils.*;
  *
  * @author Hykilpikonna
  */
-public class CommandDecode implements EverywhereCommand
-{
+public class CommandDecode implements EverywhereCommand {
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
         if (args.size() < 2) return "bot -decode [类型] [加密的字符串] || 类型可能为: " + MESSAGE_POSSIBLE_TYPES;
 
         String text;
         String encoded = ArrayUtils.getTheRestArgsAsString(args, 1);
 
-        switch (args.get(0).toLowerCase())
-        {
-            case "hex": text = fromHex(encoded); break;
-            case "b32": case "base32": text = fromBase32(encoded); break;
-            case "ascii": text = fromAscii(encoded); break;
-            default: return "不支持的类型, 类型可能为: " + MESSAGE_POSSIBLE_TYPES;
+        switch (args.get(0).toLowerCase()) {
+            case "hex":
+                text = fromHex(encoded);
+                break;
+            case "b32":
+            case "base32":
+                text = fromBase32(encoded);
+                break;
+            case "ascii":
+                text = fromAscii(encoded);
+                break;
+            default:
+                return "不支持的类型, 类型可能为: " + MESSAGE_POSSIBLE_TYPES;
         }
 
         return sender.getInfo().getNickname() + " >> " + text;
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("decode");
     }
 }

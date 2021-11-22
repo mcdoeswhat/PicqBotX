@@ -15,8 +15,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class GroupUser
-{
+public class GroupUser {
     private final PicqBotX bot;
 
     private final long id;
@@ -30,10 +29,8 @@ public class GroupUser
      *
      * @return 数据 (不一定是最新)
      */
-    public RGroupMemberInfo getInfo()
-    {
-        if (info != null)
-        {
+    public RGroupMemberInfo getInfo() {
+        if (info != null) {
             return info;
         }
         return refreshInfo();
@@ -44,10 +41,8 @@ public class GroupUser
      *
      * @return 更新的数据
      */
-    public RGroupMemberInfo refreshInfo()
-    {
-        if (id == 80000000L)
-        {
+    public RGroupMemberInfo refreshInfo() {
+        if (id == 80000000L) {
             return info = new RGroupMemberInfo(
                     0L,
                     "CN",
@@ -72,8 +67,7 @@ public class GroupUser
      *
      * @return 是不是管理员
      */
-    public boolean isAdmin()
-    {
+    public boolean isAdmin() {
         return !"member".equals(getInfo().getRole());
     }
 }

@@ -13,42 +13,38 @@ import cc.moecraft.icq.user.User;
  *
  * @author Hykilpikonna
  */
-public class EventUtils
-{
+public class EventUtils {
     /**
      * 获取用户对象
      *
      * @param event 事件
-     * @param id 用户id
+     * @param id    用户id
      * @return 用户对象
      */
-    public static User getUser(Event event, long id)
-    {
+    public static User getUser(Event event, long id) {
         return event.getBot().getUserManager().getUserFromID(id);
     }
 
     /**
      * 获取用户对象
      *
-     * @param event 事件
+     * @param event   事件
      * @param groupId 用户id
      * @return 用户对象
      */
-    public static Group getGroup(Event event, long groupId)
-    {
+    public static Group getGroup(Event event, long groupId) {
         return event.getBot().getGroupManager().getGroupFromID(groupId);
     }
 
     /**
      * 获取群用户对象
      *
-     * @param event 事件
+     * @param event   事件
      * @param groupId 群id
-     * @param id 用户id
+     * @param id      用户id
      * @return 用户对象
      */
-    public static GroupUser getGroupUser(Event event, long groupId, long id)
-    {
+    public static GroupUser getGroupUser(Event event, long groupId, long id) {
         return event.getBot().getGroupUserManager().getUserFromID(id, getGroup(event, groupId));
     }
 }

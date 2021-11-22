@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RVipInfo implements ReturnPojoBase
-{
+public class RVipInfo implements ReturnPojoBase {
     @SerializedName("level")
     @Expose
     private Long level;

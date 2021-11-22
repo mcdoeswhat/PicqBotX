@@ -16,8 +16,7 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class GroupEventMethods
-{
+public class GroupEventMethods {
     private Event event;
 
     private long groupId;
@@ -28,23 +27,19 @@ public class GroupEventMethods
      * @param message 消息
      * @return 消息发送结果
      */
-    public ReturnData<RMessageReturnData> respond(String message)
-    {
+    public ReturnData<RMessageReturnData> respond(String message) {
         return respond(message, false);
     }
 
-    public ReturnData<RMessageReturnData> respond(String message, boolean raw)
-    {
+    public ReturnData<RMessageReturnData> respond(String message, boolean raw) {
         return event.getHttpApi().sendGroupMsg(groupId, message, raw);
     }
 
-    public BotAccount getBotAccount()
-    {
+    public BotAccount getBotAccount() {
         return event.getBot().getAccountManager().getOptimal(groupId);
     }
 
-    public Group getGroup()
-    {
+    public Group getGroup() {
         return event.getBot().getGroupManager().getGroupFromID(groupId);
     }
 }

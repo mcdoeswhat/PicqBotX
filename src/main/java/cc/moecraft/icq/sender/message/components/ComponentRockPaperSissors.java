@@ -10,11 +10,9 @@ import cc.moecraft.icq.sender.message.MessageComponent;
  *
  * @author Hykilpikonna
  */
-public class ComponentRockPaperSissors extends MessageComponent
-{
+public class ComponentRockPaperSissors extends MessageComponent {
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:rps,type=1]";
     }
 }

@@ -18,8 +18,7 @@ import cc.moecraft.test.icq.listeners.SimpleTextLoggingListener;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-31 22:24
  */
-public class AprilFoolsBot
-{
+public class AprilFoolsBot {
     /**
      * 要注册的指令
      */
@@ -41,8 +40,7 @@ public class AprilFoolsBot
 
     };
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // 创建机器人对象 ( 传入配置 )
         PicqBotX bot = new PicqBotX(new PicqConfig(31092)
                 .setDebug(false)

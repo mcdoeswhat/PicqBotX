@@ -11,21 +11,18 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class EventLocalSendMessage extends EventLocal
-{
+public class EventLocalSendMessage extends EventLocal {
     protected long id;
 
     protected String message;
 
     protected boolean autoEscape = false;
 
-    public EventLocalSendMessage(long id, String message)
-    {
+    public EventLocalSendMessage(long id, String message) {
         this(id, message, false);
     }
 
-    public EventLocalSendMessage(long id, String message, boolean autoEscape)
-    {
+    public EventLocalSendMessage(long id, String message, boolean autoEscape) {
         setId(id);
         setMessage(message);
         setAutoEscape(autoEscape);

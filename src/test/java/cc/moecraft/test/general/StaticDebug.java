@@ -18,10 +18,8 @@ import static cc.moecraft.icq.command.CommandArgsParser.parse;
  *
  * @author Hykilpikonna
  */
-public class StaticDebug
-{
-    public static void main(String[] args) throws NotACommandException, CommandNotFoundException
-    {
+public class StaticDebug {
+    public static void main(String[] args) throws NotACommandException, CommandNotFoundException {
         CommandManager commandManager = new CommandManager(new PicqBotX(new PicqConfig(1234), false), "!", "bot -");
         commandManager.registerCommand(new CommandTest());
 

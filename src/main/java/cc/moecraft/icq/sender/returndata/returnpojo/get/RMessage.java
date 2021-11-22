@@ -29,7 +29,7 @@ public class RMessage implements ReturnPojoBase {
 
     /**
      * 消息类型
-     *
+     * <p>
      * 可能的值: private/私聊信息 group/群聊信息
      */
     @SerializedName("message_type")
@@ -136,7 +136,7 @@ public class RMessage implements ReturnPojoBase {
 
         /**
          * 角色 (仅群消息才有)
-         *
+         * <p>
          * 可能的值: owner/群主 admin/群管 member/成员
          */
         @SerializedName("role")

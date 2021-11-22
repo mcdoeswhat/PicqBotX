@@ -29,8 +29,7 @@ import cc.moecraft.test.icq.listeners.TestListener;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-21 20:26
  */
-public class TestBot
-{
+public class TestBot {
     /**
      * 要注册的指令
      */
@@ -66,8 +65,7 @@ public class TestBot
             new ExceptionListener()
     };
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // 创建机器人对象 ( 传入配置 )
         PicqBotX bot = new PicqBotX(new PicqConfig(31092)
                 .setDebug(true)

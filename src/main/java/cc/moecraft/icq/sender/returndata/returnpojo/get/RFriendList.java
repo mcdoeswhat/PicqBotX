@@ -19,8 +19,7 @@ import java.util.List;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RFriendList implements ReturnPojoBase
-{
+public class RFriendList implements ReturnPojoBase {
     @SerializedName("friend_group_id")
     @Expose
     private Long friendGroupId;

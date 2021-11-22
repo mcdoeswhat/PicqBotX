@@ -16,8 +16,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class Group
-{
+public class Group {
     private final PicqBotX bot;
 
     private final long id;
@@ -29,10 +28,8 @@ public class Group
      *
      * @return 数据 (不一定是最新)
      */
-    public RGroup getInfo()
-    {
-        if (info != null)
-        {
+    public RGroup getInfo() {
+        if (info != null) {
             return info;
         }
         return refreshInfo();
@@ -43,13 +40,10 @@ public class Group
      *
      * @return 更新的数据
      */
-    public RGroup refreshInfo()
-    {
+    public RGroup refreshInfo() {
         ReturnListData<RGroup> groupList = bot.getAccountManager().getNonAccountSpecifiedApi().getGroupList();
-        for (RGroup group : groupList.getData())
-        {
-            if (group.getGroupId().equals(id))
-            {
+        for (RGroup group : groupList.getData()) {
+            if (group.getGroupId().equals(id)) {
                 return info = group;
             }
         }

@@ -15,8 +15,7 @@ import java.util.Map;
  * @author Hykilpikonna
  */
 @RequiredArgsConstructor
-public class UserManager
-{
+public class UserManager {
     private final PicqBotX bot;
 
     public Map<Long, User> userCache = new HashMap<>();
@@ -27,10 +26,8 @@ public class UserManager
      * @param id QQ号
      * @return User对象
      */
-    public User getUserFromID(long id)
-    {
-        if (!userCache.containsKey(id))
-        {
+    public User getUserFromID(long id) {
+        if (!userCache.containsKey(id)) {
             userCache.put(id, new User(bot, id));
         }
         return userCache.get(id);

@@ -19,25 +19,21 @@ import java.util.regex.Pattern;
  *
  * @author Hykilpikonna
  */
-public class CommandAnnoy implements GroupCommand
-{
+public class CommandAnnoy implements GroupCommand {
     Pattern regexFindAt = Pattern.compile("(?<=\\[CQ:at,qq=).*?(?=])");
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("annoy", "复读");
     }
 
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
         if (sender.getId() != 871674895L) return "没有权限_(:з」∠)_";
 
         if (args.size() != 1) return "你要干什么?";
 
-        if (args.get(0).equalsIgnoreCase("clear"))
-        {
+        if (args.get(0).equalsIgnoreCase("clear")) {
             AnnoyingListener.annoyingQqMap = new HashMap<>();
             AnnoyingListener.annoyingGroupList = new ArrayList<>();
             return "复读列表已清空";
@@ -45,15 +41,11 @@ public class CommandAnnoy implements GroupCommand
 
         long groupId = event.getGroupId();
 
-        if (args.get(0).equalsIgnoreCase("all"))
-        {
-            if (AnnoyingListener.annoyingGroupList.contains(groupId))
-            {
+        if (args.get(0).equalsIgnoreCase("all")) {
+            if (AnnoyingListener.annoyingGroupList.contains(groupId)) {
                 AnnoyingListener.annoyingGroupList.remove(groupId);
                 return "已从复读列表中移除" + groupId + "群里的所有人";
-            }
-            else
-            {
+            } else {
                 AnnoyingListener.annoyingGroupList.add(groupId);
                 return "复读列表已添加" + groupId + "群里的所有人";
             }
@@ -63,25 +55,20 @@ public class CommandAnnoy implements GroupCommand
 
         Matcher matcher = regexFindAt.matcher(args.get(0));
 
-        try
-        {
+        try {
             if (matcher.find()) qq = Long.parseLong(matcher.group());
             else qq = Long.parseLong(args.get(0));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return "QQ号检测失败";
         }
 
-        if (!AnnoyingListener.annoyingQqMap.containsKey(groupId)) AnnoyingListener.annoyingQqMap.put(groupId, new ArrayList<>());
+        if (!AnnoyingListener.annoyingQqMap.containsKey(groupId))
+            AnnoyingListener.annoyingQqMap.put(groupId, new ArrayList<>());
 
-        if (AnnoyingListener.annoyingQqMap.get(groupId).contains(qq))
-        {
+        if (AnnoyingListener.annoyingQqMap.get(groupId).contains(qq)) {
             AnnoyingListener.annoyingQqMap.get(groupId).remove(qq);
             return "已从复读列表中移除" + qq;
-        }
-        else
-        {
+        } else {
             AnnoyingListener.annoyingQqMap.get(groupId).add(qq);
             return "复读列表已添加" + qq;
         }

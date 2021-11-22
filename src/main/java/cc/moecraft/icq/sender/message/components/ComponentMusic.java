@@ -12,28 +12,24 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class ComponentMusic extends MessageComponent
-{
+public class ComponentMusic extends MessageComponent {
     public int musicId;
 
     public MusicSourceType type;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:music,type=" + type.toString() + ",id=" + musicId + "]";
     }
 
     @AllArgsConstructor
-    public enum MusicSourceType
-    {
+    public enum MusicSourceType {
         qq("qq"), netease("163");
 
         public String type;
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return type;
         }
     }

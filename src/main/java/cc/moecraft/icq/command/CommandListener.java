@@ -23,8 +23,7 @@ import static cc.moecraft.icq.command.CommandArgsParser.parse;
  * @author Hykilpikonna
  */
 @RequiredArgsConstructor
-public class CommandListener
-{
+public class CommandListener {
     private final CommandManager commandManager;
 
     @Getter
@@ -36,36 +35,28 @@ public class CommandListener
      * @param event 事件
      * @return 是否继续执行后续事件
      */
-    public boolean check(EventMessage event)
-    {
-        try
-        {
+    public boolean check(EventMessage event) {
+        try {
             // 获取Args
             CommandArgs args = parse(event.getBot().getCommandManager(), event.getMessage(),
-                event instanceof EventGroupMessage || event instanceof EventDiscussMessage);
+                    event instanceof EventGroupMessage || event instanceof EventDiscussMessage);
             CommandRunnable runnable = new CommandRunnable(event, args);
 
             // 运行指令
-            if (event.getBot().getConfig().isUseAsyncCommands())
-            {
+            if (event.getBot().getConfig().isUseAsyncCommands()) {
                 Thread thread = new Thread(runnable, "Thread-" + System.currentTimeMillis());
                 thread.start();
                 runningAsyncThreads.put(thread.getName(), thread);
                 runnable.setCallback(() -> runningAsyncThreads.remove(thread.getName()));
-            }
-            else
-            {
+            } else {
                 runnable.run();
             }
 
             // 取消后续事件
-            if (!event.getBot().getConfig().isCommandsAlsoCallEvents())
-            {
+            if (!event.getBot().getConfig().isCommandsAlsoCallEvents()) {
                 return false;
             }
-        }
-        catch (NotACommandException | CommandNotFoundException e)
-        {
+        } catch (NotACommandException | CommandNotFoundException e) {
             // 不是指令
         }
 
@@ -75,27 +66,21 @@ public class CommandListener
     @Setter
     @Getter
     @RequiredArgsConstructor
-    private class CommandRunnable implements Runnable
-    {
+    private class CommandRunnable implements Runnable {
         private final EventMessage event;
         private final CommandArgs args;
         private Runnable callback;
 
         @Override
-        public void run()
-        {
-            try
-            {
+        public void run() {
+            try {
                 commandManager.runCommand(event, args);
-            }
-            catch (Throwable e)
-            {
+            } catch (Throwable e) {
                 event.getBot().getEventManager().callError(event, e);
                 event.getBot().getConfig().getCommandErrorHandler().accept(e);
             }
 
-            if (callback != null)
-            {
+            if (callback != null) {
                 callback.run();
             }
         }

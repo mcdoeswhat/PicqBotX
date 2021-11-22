@@ -14,8 +14,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString(callSuper = true)
-public class EventGroupInviteRequest extends EventRequest
-{
+public class EventGroupInviteRequest extends EventRequest {
     @SerializedName("group_id")
     @Expose
     protected Long groupId;
@@ -25,14 +24,12 @@ public class EventGroupInviteRequest extends EventRequest
     protected String subType;
 
     @Override
-    public void accept()
-    {
+    public void accept() {
         getHttpApi().approveGroupRequest(flag, subType); // TODO: 测试
     }
 
     @Override
-    public void reject(String reason)
-    {
+    public void reject(String reason) {
         getHttpApi().rejectGroupRequest(flag, subType, reason);
     }
 }

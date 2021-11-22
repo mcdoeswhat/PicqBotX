@@ -12,13 +12,11 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class ComponentRecord extends MessageComponent
-{
+public class ComponentRecord extends MessageComponent {
     public String fileOrURL;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:record,file=" + fileOrURL + "]";
     }
 }

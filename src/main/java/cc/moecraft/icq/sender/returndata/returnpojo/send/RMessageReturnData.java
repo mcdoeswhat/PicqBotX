@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public class RMessageReturnData implements ReturnPojoBase
-{
+public class RMessageReturnData implements ReturnPojoBase {
     @SerializedName("message_id")
     @Expose
     private Long messageId;

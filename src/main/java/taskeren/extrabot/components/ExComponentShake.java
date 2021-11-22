@@ -10,15 +10,12 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ExComponentShake extends ExComponentSendable
-{
-    public ExComponentShake()
-    {
+public class ExComponentShake extends ExComponentSendable {
+    public ExComponentShake() {
     }
 
     @Override
-    public String toCQCode()
-    {
+    public String toCQCode() {
         return "[CQ:shake]";
     }
 }

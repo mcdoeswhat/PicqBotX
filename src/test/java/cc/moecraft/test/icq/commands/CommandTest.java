@@ -15,17 +15,14 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandTest implements EverywhereCommand
-{
+public class CommandTest implements EverywhereCommand {
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("test", "测试", "测试2");
     }
 
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
         return "测试返回值 - 用户信息: " + sender.getInfo();
     }
 }

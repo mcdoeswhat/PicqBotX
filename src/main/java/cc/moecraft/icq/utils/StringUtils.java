@@ -11,8 +11,7 @@ package cc.moecraft.icq.utils;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-24 13:35
  */
-public class StringUtils
-{
+public class StringUtils {
     /**
      * 移除前面的空格
      *
@@ -21,9 +20,8 @@ public class StringUtils
      */
     public static String removeStartingSpace(String original) {
         int i = 0;
-        
-        while (original.charAt(i) == ' ')
-        {
+
+        while (original.charAt(i) == ' ') {
             i++;
         }
         return original.substring(i);

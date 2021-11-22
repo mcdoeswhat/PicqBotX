@@ -16,8 +16,7 @@ import java.lang.reflect.Method;
  */
 @Data
 @AllArgsConstructor
-public class RegisteredListenerMethod
-{
+public class RegisteredListenerMethod {
     private Method method;
 
     private IcqListener listener;
@@ -27,10 +26,9 @@ public class RegisteredListenerMethod
      *
      * @param event 事件
      * @throws InvocationTargetException 反射失败
-     * @throws IllegalAccessException 无访问权限 (不可能发生)
+     * @throws IllegalAccessException    无访问权限 (不可能发生)
      */
-    public void call(Event event) throws InvocationTargetException, IllegalAccessException
-    {
+    public void call(Event event) throws InvocationTargetException, IllegalAccessException {
         method.setAccessible(true);
         method.invoke(listener, event);
     }

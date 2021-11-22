@@ -14,8 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter(AccessLevel.NONE)
-public class RGroupMemberInfo implements ReturnPojoBase
-{
+public class RGroupMemberInfo implements ReturnPojoBase {
     @SerializedName("age")
     @Expose
     private Long age;

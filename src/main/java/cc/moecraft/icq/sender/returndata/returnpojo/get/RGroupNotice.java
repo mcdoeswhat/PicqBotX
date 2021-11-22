@@ -19,8 +19,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter(AccessLevel.NONE)
-public class RGroupNotice implements ReturnPojoBase
-{
+public class RGroupNotice implements ReturnPojoBase {
     @SerializedName("cn")
     @Expose
     public Long cn;
@@ -33,12 +32,16 @@ public class RGroupNotice implements ReturnPojoBase
     @Expose
     public Long fn;
 
-    /** 消息 */
+    /**
+     * 消息
+     */
     @SerializedName("msg")
     @Expose
     public NoticeMessage message;
 
-    /** 发布时间 (单位是秒) */
+    /**
+     * 发布时间 (单位是秒)
+     */
     @SerializedName("pubt")
     @Expose
     public Long publishTimeSeconds;
@@ -51,7 +54,9 @@ public class RGroupNotice implements ReturnPojoBase
     @Expose
     public NoticeSettings settings;
 
-    /** 发送群通知的管理员ID */
+    /**
+     * 发送群通知的管理员ID
+     */
     @SerializedName("u")
     @Expose
     public Long sender;
@@ -64,9 +69,10 @@ public class RGroupNotice implements ReturnPojoBase
     @AllArgsConstructor
     @NoArgsConstructor
     @Setter(AccessLevel.NONE)
-    public class NoticeMessage
-    {
-        /** 内容 */
+    public class NoticeMessage {
+        /**
+         * 内容
+         */
         @SerializedName("text")
         @Expose
         public String content;
@@ -75,7 +81,9 @@ public class RGroupNotice implements ReturnPojoBase
         @Expose
         public String textFace;
 
-        /** 标题 */
+        /**
+         * 标题
+         */
         @SerializedName("title")
         @Expose
         public String title;
@@ -85,8 +93,7 @@ public class RGroupNotice implements ReturnPojoBase
     @AllArgsConstructor
     @NoArgsConstructor
     @Setter(AccessLevel.NONE)
-    public class NoticeSettings
-    {
+    public class NoticeSettings {
         @SerializedName("is_show_edit_card")
         @Expose
         public Long isShowEditCard;

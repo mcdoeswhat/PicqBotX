@@ -8,4 +8,5 @@ package cc.moecraft.icq.sender.returndata.returnpojo;
  *
  * @author Hykilpikonna
  */
-public interface ReturnPojoBase {}
+public interface ReturnPojoBase {
+}

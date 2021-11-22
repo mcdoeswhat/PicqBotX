@@ -16,16 +16,14 @@ import java.util.Scanner;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-23 13:54
  */
-public class NetUtils
-{
+public class NetUtils {
     /**
      * 读取字符串数据
      *
      * @param in 输入流
      * @return 字符串
      */
-    public static String read(InputStream in)
-    {
+    public static String read(InputStream in) {
         Scanner scanner = new Scanner(in, "UTF-8").useDelimiter("\\A");
         return scanner.hasNext() ? scanner.next() : "";
     }
@@ -37,14 +35,10 @@ public class NetUtils
      * @param port 端口
      * @return URL
      */
-    public static String url(String host, int port)
-    {
-        try
-        {
+    public static String url(String host, int port) {
+        try {
             return new URI("http", null, host, port, "/", null, null).toURL().toString();
-        }
-        catch (MalformedURLException | URISyntaxException e)
-        {
+        } catch (MalformedURLException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }

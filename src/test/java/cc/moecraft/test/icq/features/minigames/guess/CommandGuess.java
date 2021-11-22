@@ -21,16 +21,13 @@ import java.util.Random;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-05-11 14:38
  */
-public class CommandGuess implements EverywhereCommand
-{
+public class CommandGuess implements EverywhereCommand {
     @Getter
     private Map<Long, GuessSession> sessions = new HashMap<>(); // 会话列表w
 
     @Override
-    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
-    {
-        if (args.size() != 0)
-        {
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args) {
+        if (args.size() != 0) {
             return "猜数字直接输数字就可以了哦w";
         }
 
@@ -45,8 +42,7 @@ public class CommandGuess implements EverywhereCommand
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("guess", "猜数字");
     }
 }

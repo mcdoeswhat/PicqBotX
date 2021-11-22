@@ -20,8 +20,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventMetaHeartbeat extends EventMeta
-{
+public class EventMetaHeartbeat extends EventMeta {
     @SerializedName("status")
     @Expose
     private RStatus status;

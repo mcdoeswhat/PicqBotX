@@ -11,10 +11,8 @@ import java.lang.reflect.Method;
  *
  * @author Hykilpikonna
  */
-public class InvokeTest
-{
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException
-    {
+public class InvokeTest {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         int loopTimes = 100000000;
         long startTime;
 
@@ -29,8 +27,7 @@ public class InvokeTest
         System.out.println("反射Invoke调用, 耗时: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
-    public static boolean doStuff(int i)
-    {
+    public static boolean doStuff(int i) {
         return i % 2 == 1;
     }
 }

@@ -12,6 +12,5 @@ import java.lang.annotation.RetentionPolicy;
  * @author Hykilpikonna
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EventHandler
-{
+public @interface EventHandler {
 }

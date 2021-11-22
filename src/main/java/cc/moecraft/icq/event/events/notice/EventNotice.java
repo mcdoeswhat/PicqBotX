@@ -14,8 +14,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventNotice extends Event
-{
+public class EventNotice extends Event {
     @SerializedName("notice_type")
     @Expose
     protected String noticeType;
@@ -25,8 +24,7 @@ public class EventNotice extends Event
     protected Long userId;
 
     @Override
-    public boolean contentEquals(Object o)
-    {
+    public boolean contentEquals(Object o) {
         if (!(o instanceof EventNotice)) return false;
         EventNotice other = (EventNotice) o;
 

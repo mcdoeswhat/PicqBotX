@@ -15,8 +15,7 @@ import lombok.Getter;
  */
 @Data
 @Getter
-public class BotAccount
-{
+public class BotAccount {
     private final String name;
 
     private final String postUrl;
@@ -27,8 +26,7 @@ public class BotAccount
 
     private IcqHttpApi httpApi;
 
-    public BotAccount(String name, PicqBotX bot, String postUrl, int postPort)
-    {
+    public BotAccount(String name, PicqBotX bot, String postUrl, int postPort) {
         this.name = name;
         this.postUrl = postUrl;
         this.postPort = postPort;

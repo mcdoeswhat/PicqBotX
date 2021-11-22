@@ -14,8 +14,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString(callSuper = true)
-public class EventGroupAddRequest extends EventRequest
-{
+public class EventGroupAddRequest extends EventRequest {
     @SerializedName("group_id")
     @Expose
     protected Long groupId;
@@ -25,20 +24,17 @@ public class EventGroupAddRequest extends EventRequest
     protected String subType;
 
     @Override
-    public void accept()
-    {
+    public void accept() {
         getHttpApi().approveGroupRequest(flag, subType); // TODO: 测试
     }
 
     @Override
-    public void reject(String reason)
-    {
+    public void reject(String reason) {
         getHttpApi().rejectGroupRequest(flag, subType, reason);
     }
 
     @Override
-    public boolean contentEquals(Object o)
-    {
+    public boolean contentEquals(Object o) {
         if (!(o instanceof EventGroupAddRequest)) return false;
         EventGroupAddRequest other = (EventGroupAddRequest) o;
 

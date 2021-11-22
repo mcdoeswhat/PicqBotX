@@ -16,13 +16,10 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandAntiRecallOut implements GroupCommand
-{
+public class CommandAntiRecallOut implements GroupCommand {
     @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
-    {
-        if (args.size() == 0)
-        {
+    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args) {
+        if (args.size() == 0) {
             StringBuilder ultimateMessage = new StringBuilder();
 
             for (String message : AntiRecallListener.groupTexts.get(group.getId()))
@@ -30,12 +27,10 @@ public class CommandAntiRecallOut implements GroupCommand
 
             return ultimateMessage.toString();
         }
-        if (args.size() == 2)
-        {
+        if (args.size() == 2) {
             StringBuilder ultimateMessage = new StringBuilder();
 
-            try
-            {
+            try {
                 int from = Integer.parseInt(args.get(0));
                 int to = Integer.parseInt(args.get(1));
 
@@ -45,13 +40,9 @@ public class CommandAntiRecallOut implements GroupCommand
                     ultimateMessage.append(messageList.get(i)).append("\n");
 
                 return ultimateMessage.toString();
-            }
-            catch (NumberFormatException ignored)
-            {
+            } catch (NumberFormatException ignored) {
 
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return "未知错误, 见后台";
             }
@@ -61,8 +52,7 @@ public class CommandAntiRecallOut implements GroupCommand
     }
 
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("arout");
     }
 }

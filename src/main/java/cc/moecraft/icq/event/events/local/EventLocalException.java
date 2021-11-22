@@ -14,8 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class EventLocalException extends EventLocal
-{
+public class EventLocalException extends EventLocal {
     private final Throwable exception;
 
     private final Event parentEvent;

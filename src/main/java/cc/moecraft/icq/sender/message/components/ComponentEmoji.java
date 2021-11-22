@@ -12,13 +12,11 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @AllArgsConstructor
-public class ComponentEmoji extends MessageComponent
-{
+public class ComponentEmoji extends MessageComponent {
     public int emojiId;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "[CQ:emoji,id=" + emojiId + "]";
     }
 }

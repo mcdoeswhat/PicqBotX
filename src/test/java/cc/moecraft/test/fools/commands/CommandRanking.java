@@ -12,11 +12,9 @@ import cc.moecraft.icq.command.CommandProperties;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-31 22:27
  */
-public class CommandRanking extends AFCommand
-{
+public class CommandRanking extends AFCommand {
     @Override
-    public CommandProperties properties()
-    {
+    public CommandProperties properties() {
         return new CommandProperties("ranking", "top", "群排名");
     }
 }

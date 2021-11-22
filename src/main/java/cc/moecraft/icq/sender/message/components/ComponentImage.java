@@ -10,8 +10,7 @@ import cc.moecraft.icq.sender.message.MessageComponent;
  *
  * @author Hykilpikonna
  */
-public class ComponentImage extends MessageComponent
-{
+public class ComponentImage extends MessageComponent {
     public String fileOrURL;
     public boolean isLocalFile;
 
@@ -25,8 +24,7 @@ public class ComponentImage extends MessageComponent
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         if (isLocalFile) {
             return "[CQ:image,file=file:///" + fileOrURL + "]";
         } else {

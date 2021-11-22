@@ -15,8 +15,7 @@ import java.util.Map;
  * @author Hykilpikonna
  */
 @RequiredArgsConstructor
-public class GroupManager
-{
+public class GroupManager {
     private final PicqBotX bot;
 
     public Map<Long, Group> groupCache = new HashMap<>();
@@ -27,10 +26,8 @@ public class GroupManager
      * @param id QQ号
      * @return 群对象
      */
-    public Group getGroupFromID(long id)
-    {
-        if (!groupCache.containsKey(id))
-        {
+    public Group getGroupFromID(long id) {
+        if (!groupCache.containsKey(id)) {
             groupCache.put(id, new Group(bot, id));
         }
         return groupCache.get(id);

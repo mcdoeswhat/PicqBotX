@@ -8,8 +8,7 @@ package cc.moecraft.icq.event;
  *
  * @author Hykilpikonna
  */
-public interface ContentComparable
-{
+public interface ContentComparable {
     /**
      * 内容是否和另一个相同
      *
